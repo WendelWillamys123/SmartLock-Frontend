@@ -28,7 +28,7 @@ body {
 .content::before {
     content: "";
     position: absolute;
-    background: linear-gradient(270.01deg, #CB66FF 0%, rgba(255, 255, 255, 0) 100%), #00AAFF;
+    background-color: #00AAFF;
     width: 40%;
     height: 100%;
     border-top-left-radius: 15px;
@@ -170,8 +170,28 @@ input:-webkit-autofill
     z-index: 13;
 }
 
+.sign-in-js .title-second {
+    color: #CB66FF;
+}
+
+.sign-in-js .btn-primary:hover {
+    background-color: #fff;
+    color: #CB66FF;
+}
+.sign-in-js .btn-second {
+    background-color: #CB66FF;
+    border: 1px solid #CB66FF;
+    transition: background-color .5s;
+}
+.sign-in-js .btn-second:hover {
+    background-color: #fff;
+    border: 1px solid #CB66FF;
+    color: #CB66FF;
+}
+
 .sign-in-js .content::before {
     left: 60%;
+    background-color: #CB66FF;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: 15px;
@@ -337,21 +357,25 @@ input:-webkit-autofill
     }
 
     25% {
+        background: linear-gradient(270.01deg, #00AAFF 0%, rgba(255, 255, 255, 0) 100%), #CB66FF;
         left: 5%;
         width: 50%;
     }
 
     30% {
+        background: linear-gradient(270.01deg, #00AAFF 0%, rgba(255, 255, 255, 0) 100%), #CB66FF;
         left: 10%;
         width: 50%;
     }
 
     50% {
+        background: linear-gradient(270.01deg, #00AAFF 0%, rgba(255, 255, 255, 0) 100%), #CB66FF;
         left: 25%;
         width: 60%;
     }
 
     75% {
+        background: linear-gradient(270.01deg, #00AAFF 0%, rgba(255, 255, 255, 0) 100%), #CB66FF;
         left: 45%;
         width: 50%;
     }
@@ -370,11 +394,13 @@ input:-webkit-autofill
     }
 
     25% {
+        background: linear-gradient(270.01deg, #00AAFF 0%, rgba(255, 255, 255, 0) 100%), #CB66FF;
         left: 45%;
         width: 50%;
     }
 
     50% {
+        background: linear-gradient(270.01deg, #00AAFF 0%, rgba(255, 255, 255, 0) 100%), #CB66FF;
         left: 25%;
         width: 60%;
     }

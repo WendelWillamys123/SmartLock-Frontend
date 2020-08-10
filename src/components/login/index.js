@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Redirect} from 'react-router-dom';
 import api from '../../services/api';
 import './style.css';
 
@@ -9,11 +10,13 @@ function Login() {
     const [password, setPassword] = useState('');
 
     async function createOrganization() {
-            await api.post('/users', {
+            const response = await api.post('/auth/register', {
             name,
             email,
             password, 
         });
+
+        console.log(response);
     }
   
   return (
@@ -32,7 +35,7 @@ function Login() {
               </div>  
 
               <div className="second-column">
-                <h2 className="title title-second">Create account</h2>
+                <h2 className="title title-second">Create your organization</h2>
                 <p className="description description-second">Use your email for registration</p>
                
                 <form className="form" onSubmit={createOrganization}>
@@ -71,7 +74,9 @@ function Login() {
                     <h2 className="title title-second">Sign in to organization</h2>
                     <p className="description description-second">Use your email account</p>
                 
-                    <form className="form">
+                    <form className="form" onSubmit={()=>{
+                      return <Redirect to='/home'></Redirect>
+                    }}>
                         <label className="label-input">
                           <input type="email" placeholder="Email"/>
                         </label>
