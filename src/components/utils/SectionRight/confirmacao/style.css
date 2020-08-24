@@ -1,0 +1,68 @@
+div.shadow{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.329);
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    padding-left: 35%;
+}
+
+div.modal{
+    width: 450px;
+    height: 200px;
+    background-color: white;
+    box-shadow: 2px 4px 40px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.329);
+    border-radius: 10px;
+}
+
+div.modal h1{
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    width: 100%;
+    margin: 20px 0px 30px 20px;
+}
+
+label#name{
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-weight: medium;
+    font-size: 15px;
+    width: 100%;
+    margin: -5px 0px 10px 5px;
+}
+
+div.buttons{
+    margin-left: 45%;
+    margin-top: 10px;
+}
+
+button#menorButton{
+    margin-top: 0px;
+    width: 95px;
+}
+
+
+div.input{
+    font-size: 13px;
+    margin-top: -5px;
+    margin-bottom: 24px;
+    margin: 0px 10px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+div.input input{
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  height: 25px;
+  margin-top: 5px;
+  padding-left: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.329);
+}

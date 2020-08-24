@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+div#sectionRigth{
+    position: absolute; 
+    top: 60px;
+    right: 0; 
+    width: 30%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-left: #acaca870 solid 1px;
+}
+
+
+div.headerRigth{
+    height: 60px;
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    border-bottom: 1px solid #CCCCCC;
+    margin: 20px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.dataComponent{
+    width: 100%;
+    height: 330px;
+}
+
+div.crud{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*------------------------- Paragrafos e titles ---------------------------*/
+
+strong.sectionRigth.title{
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+    margin-left: -40px;
+    color: #000000;
+}
+
+p.sectionRigth.description{
+    font-style: italic;
+    font-size: 12px;
+    line-height: 20px;
+    display: flex;
+    letter-spacing: -0.015em;
+    margin-left: -38px;
+    color: #666666;
+}
+
+p.dataComponent.description{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    letter-spacing: -0.015em;
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-right: 10px;
+    color: #666666;
+}
+
+
+/*------------------------- FAQ -----------------------------------------*/
+
+#FAQ{
+    max-width:200px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+}
+
+.FAQ{
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: left;
+    bottom: 150px;
+    left: 0px;
+    bottom: 120px;
+}
+
+.sectionRigth.description.faq{
+    width: 200px;
+    margin: -30px 0 0 -120px;
+}
+
+
+div.sectionRigth.elipse{
+    position: absolute;
+    align-items: center;
+    top: 0px;
+    left: 0px;
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 0 0 75% 0;
+    background-color: #00aaffbd;
+}
+
+/*--------------------------- Buttons ----------------------------------*/
+
+.buttonsCRUD{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 170px;
+    top: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+.btn.edit { 
+    padding: 5px;
+    padding-left: 12px;
+    width: 100%;
+    height: 30px;
+    background-color: #00aaffbd;
+    border: 1px solid #00AAFFbd;
+    transition: background-color .5s;
+}
+.btn.edit:hover {
+    background-color: #fff;
+    color: #00AAFFbd;
+}
+.btn.delete {
+    padding: 5px;
+    width: 100%;
+    height: 30px;
+    background-color: #ff0000bd;
+    border: 1px solid #ff0000bd;
+    transition: background-color .5s;
+}
+.btn.delete:hover {
+    background-color: #fff;
+    border: 1px solid #ff0000bd;
+    color: #ff0000bd;
+}
+
+/*----------------------- RightCButtonComponents ----------------------- */
+
+div.RightbuttonComponent{
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    background-color: #CCCCCC;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 65px;
+    height: 65px;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+p.Right-Notify{
+    margin: 19.5px 0 0 10px;
+    font-style: italic;
+    font-weight: lighter;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.015em;
+    color: #666666;
+}
+
+div.Right{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 90px;
+}
+
+strong.Right.locks{
+    font-size: 11px;
+}
+
+strong.Right.roles{
+    font-size: 11px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------- Media querys -----------------------------------*/
+
+@media (min-width:630px) and (max-width: 1030px) {
+    div.buttonsCRUD {
+        left: 120px;
+        width: 90px;
+        height: 90px;
+    }
+    .sectionRigth.description.faq{
+        width: 150px;
+        margin: -30px 0 0 -110px;
+    }
+  }
+
+@media (min-width:1031px) and (max-width: 1100px) {
+    div.buttonsCRUD {
+        left: 140px;
+        width: 90px;
+        height: 90px;
+    }
+    .sectionRigth.description.faq{
+        width: 170px;
+        margin: -30px 0 0 -110px;
+    }
+  }
+
+  @media (min-width: 1101px) {
+    div.buttonsCRUD {
+        right: 170px;
+        width: 90px;
+        height: 90px;
+    }
+  }

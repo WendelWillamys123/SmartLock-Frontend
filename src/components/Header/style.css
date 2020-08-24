@@ -1,0 +1,22 @@
+header#main-header{
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    padding: 20px 0;
+    font-size:20px;
+    text-align:center;
+    background: linear-gradient(270.01deg, #CB66FF 0%, rgba(255, 255, 255, 0) 100%), #00AAFF;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-family: "Roboto", sans-serif;
+    color: seashell;
+}
+
+header#main-header strong{
+    margin-left: 20px;
+}
+
+header#main-header label{
+    margin-left: 720px;
+}

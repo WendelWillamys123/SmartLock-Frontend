@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './style.css';
 import {Link} from 'react-router-dom';
 
@@ -6,11 +6,25 @@ import UserIcon from '@material-ui/icons/PersonOutlineOutlined';
 import DoorIcon from '@material-ui/icons/MeetingRoomOutlined';
 import GroupIcon from '@material-ui/icons/PeopleAltOutlined';
 import HomeIcon from '@material-ui/icons/Home';
+import AdminIcon from '@material-ui/icons/HowToReg';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import PermissoesIcon from '@material-ui/icons/SettingsOutlined';
 
-function Aplication(){ 
+function SectionLeft(){ 
 
+    const [org, setOrg] = useState('');
+
+    useEffect(()=>{
+        function load(){
+            var data = sessionStorage.getItem("myID");
+            var myID = JSON.parse(data);
+            
+            if(myID === undefined || myID === null);
+            else setOrg(true);
+            
+        }
+        load();
+    }, []);
     
 return(
     <div id="sectionLeft">
@@ -28,14 +42,14 @@ return(
         if(window.location.href==="http://localhost:3000/groups")window.location.reload();
         }}>
         <GroupIcon style={{color: '#18A0FB', margin: '0px 10px 0px 10px'}}/>
-        <label id="label1">Grupos</label>
+        <label id="label1">Groups</label>
         </div>
         </Link>
 
-        <Link to="/listaLocalFisico" style={{textDecoration: 'none'}}>
+        <Link to="/physicalLocal" style={{textDecoration: 'none'}}>
         <div className="button">
         <DoorIcon style={{color: '#18A0FB', margin: '0px 12px 0px 12px'}}/>
-        <label id="label1">Local físico</label>
+        <label id="label1">Physical Local</label>
         </div>
         </Link>
 
@@ -46,21 +60,30 @@ return(
         </div>
         </Link>
 
-        <Link to="/permissoes" style={{textDecoration: 'none'}}>
+        <Link to="/roles" style={{textDecoration: 'none'}}>
         <div className="button">
         <PermissoesIcon  style={{color: '#18A0FB', margin: '0px 10px 0px 10px'}} />
-        <label id="label1">Permissões</label>
+        <label id="label1">Roles</label>
         </div>
         </Link>
 
-        <Link to="/listaUser" style={{textDecoration: 'none'}}>
+        <Link to="/users" style={{textDecoration: 'none'}}>
         <div className="button">
         <UserIcon style={{color: '#18A0FB', margin: '0px 10px 0px 10px'}} />
-        <label id="label1">Usuários</label>
+        <label id="label1">Users</label>
         </div>
         </Link>
+
+        {org && (
+            <Link to="/admins" style={{textDecoration: 'none'}}>
+            <div className="button">
+            <AdminIcon style={{color: '#18A0FB', margin: '0px 10px 0px 10px'}} />
+            <label id="label1">Admins</label>
+            </div>
+            </Link>
+        )}
     </div>
 );
 };
 
-export default Aplication;
+export default SectionLeft;
