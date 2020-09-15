@@ -35,9 +35,10 @@ function Home() {
                 <p className="Title">Users</p>
             </div>
 
-            <div className="section" id="sectionGroups">
+            <div className="section" id="sectionAdmins">
                 <p className="Title">Admins</p>
             </div> 
+            
 
     
         <div className="sectionComponent">

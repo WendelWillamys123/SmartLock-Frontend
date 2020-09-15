@@ -2,11 +2,12 @@
 
 
 div#sectionRigth{
+    z-index: 8;
     position: absolute; 
     top: 60px;
     right: 0; 
-    width: 30%;
-    height: 100%;
+    width: 30vw;
+    height: 100vh;
     background-color: rgb(255, 255, 255);
     border-left: #acaca870 solid 1px;
 }
@@ -108,7 +109,7 @@ div.sectionRigth.elipse{
     height: 70px;
     border: none;
     border-radius: 0 0 75% 0;
-    background-color: #00aaffbd;
+    background-color: #18a0fb8c;
 }
 
 /*--------------------------- Buttons ----------------------------------*/
@@ -156,6 +157,7 @@ div.RightbuttonComponent{
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
     background-color: #CCCCCC;
     padding: 5px;
+    padding-top: 17px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -163,6 +165,9 @@ div.RightbuttonComponent{
     height: 65px;
     margin: 5px;
     border-radius: 50%;
+}
+.RightbuttonComponent.typeAdd{
+    margin: 35px 20px 0 20px;
 }
 
 p.Right-Notify{
@@ -183,24 +188,13 @@ div.Right{
     height: 90px;
 }
 
-strong.Right.locks{
-    font-size: 11px;
+strong.Right{
+    font-size: 13px;
+    font-weight: normal;
+    max-width: 65px;
+    color: #515354;
+    margin-top: 25px;
 }
-
-strong.Right.roles{
-    font-size: 11px;
-}
-
-
-
-
-
-
-
-
-
-
-
 
 /*-------------------------- Media querys -----------------------------------*/
 

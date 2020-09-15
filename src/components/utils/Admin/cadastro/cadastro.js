@@ -32,11 +32,7 @@ function Cadastro ({onClose = () => {}, load}){
             name,
             email,
             password,
-            organization
-        }, {
-            headers: { 
-                authorization: token
-            }});
+        });
 
         setName('');  
         setEmail('');

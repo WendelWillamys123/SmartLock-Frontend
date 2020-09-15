@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-import api from '../../../../services/api';
+import api from '../../../services/api';
 
 function Check({ id = 'shadow', onClose = () => {}, _id, type, onDelete=()=>{}}){
 
@@ -18,15 +18,15 @@ function Check({ id = 'shadow', onClose = () => {}, _id, type, onDelete=()=>{}})
                     _id: _id,
                 }, 
             });
-        } else if(type==="Lock"){
+        } else if(type==="Trava"){
             await api.delete('/locks/delete', { 
                 headers:{
                     _id: _id,
                 }, 
             });
         }
-        else if(type==="Physical Local"){
-            await api.delete('/physicalLocal/delete', { 
+        else if(type==="Local Fisíco"){
+            await api.delete('/localFisico/delete', { 
                 headers:{
                     _id: _id,
                 }, 

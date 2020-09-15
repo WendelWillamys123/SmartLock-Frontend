@@ -30,7 +30,7 @@ function Login() {
           password, 
       });
       if(response.status === 200){
-        console.log(response.data)
+        sessionStorage.setItem("source", JSON.stringify("None"));
       sessionStorage.setItem("tokenLocal", JSON.stringify(response.data.token));
       window.location.replace("http://localhost:3000/home");
       }

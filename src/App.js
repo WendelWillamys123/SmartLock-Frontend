@@ -11,11 +11,14 @@ import Locks from "./components/SectionCenter/Locks";
 import PhysicalLocal from "./components/SectionCenter/PhysicalLocal";
 import Users from "./components/SectionCenter/Users/lista";
 import Admins from "./components/SectionCenter/Admins/lista";
+import Roles from './components/SectionCenter/Roles';
+
 import User from './components/SectionCenter/User';
 import Admin from './components/SectionCenter/Admin';
 
 import Page404 from "./services/Page404"
 import {PrivateRoute} from './routes/PrivateRoute.js';
+
 
  function App() {
      return(
@@ -34,13 +37,16 @@ import {PrivateRoute} from './routes/PrivateRoute.js';
               <PrivateRoute exact path="/admins" component={Admins}/>
               <PrivateRoute exact path="/locks" component={Locks}/>
               <PrivateRoute exact path="/physicalLocal" component={PhysicalLocal}/>
+              <PrivateRoute exact path="/roles" component={Roles}/>
+
               <PrivateRoute exact path="/user" component={User}/>
               <PrivateRoute exact path="/admin" component={Admin}/>
               <Route path="/" render={()=>{
                   if(window.location.href==="http://localhost:3000/" || window.location.href==="http://localhost:3000/users" || 
                   window.location.href==="http://localhost:3000/home" || window.location.href==="http://localhost:3000/admins" ||
                    window.location.href==="http://localhost:3000/locks" || window.location.href==="http://localhost:3000/physicalLocal" || 
-                   window.location.href==="http://localhost:3000/user" || window.location.href==="http://localhost:3000/admin");
+                   window.location.href==="http://localhost:3000/user" || window.location.href==="http://localhost:3000/admin" ||
+                   window.location.href==="http://localhost:3000/roles" || window.location.href==="http://localhost:3000/role");
                   else{
                      window.setTimeout(function(){ window.location = "http://localhost:3000/"; },5000)
                   return <Page404/> 

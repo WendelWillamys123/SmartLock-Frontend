@@ -5,6 +5,7 @@ import api from '../../../services/api';
 
 import SectionRigth from "../../utils/SectionRight"
 import LockIcon from '@material-ui/icons/LockOutlined';
+import AddComponents from "../../utils/Add/cadastro";
 
 function Locks (){
 
@@ -123,6 +124,30 @@ function Locks (){
         
         return myOwner;
     }
+
+    async function reload(){
+        sessionStorage.setItem("source", JSON.stringify("None"));
+
+        var input = document.getElementById("Hchecked");
+        var body = document.querySelector("body");
+
+        if(body.className === "NewRight") body.className = "OldRight";
+        if(input.checked) input.checked = false;
+
+        const response = await api.get('/locks');
+
+        var height = window.screen.height;
+
+        if(height >= 810){
+            setLocks(response.data.slice(0, 24));
+            setArray(response.data.slice(0, 24));
+        }
+        if(height < 810 && height>= 690){
+            setLocks(response.data.slice(0, 20));
+            setArray(response.data.slice(0, 20));
+        }
+    }
+    
     return (
        
         <>
@@ -162,6 +187,20 @@ function Locks (){
                    </div>
                    )})}
         </main>
+                   
+        <input id="Hchecked" type="checkbox" onClick={()=>{
+                      var body = document.querySelector("body");
+                      if(body.className === "NewRight") body.className = "OldRight";
+                      else body.className = "NewRight";
+                  }}/>
+                  
+                  <label for="Hchecked">
+                            <div className="menuH center">
+                                <span className="hamburguer center"></span>
+                            </div>
+                        </label>
+                  <AddComponents reload={reload}/>
+
         {(visibleRigth)? <SectionRigth owner={owner} type={type} component={component} onDelete={onDelete} onUpdate={onUpdate}/> : (
         <div className="FAQ-main">
         <img id="FAQ-main" src="https://media-public.canva.com/cTjy8/MAD0-5cTjy8/1/s.svg"/>

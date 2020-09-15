@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+#FAQ-NEW{
+    opacity: 1;
+    max-width:200px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+    transition: 1s 1s ease-in-out;
+}
+
+#FAQ{
+    opacity: 1;
+    transition: .25s ease-in-out;
+}
+
+div.Right.Schedules{
+    margin-top: +30px;
+}
+
+strong.Right.Schedules{
+    font-size: 11px;
+}
+
+/*-------------------------menu hamburguer----------------------------------*/
+
+div.menuH{
+    background-color: rgb(128, 203, 253);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    right: 90px;
+    box-shadow: 0 0 0 0px rgb(128, 203, 253), 0 0 0 0px rgb(128, 203, 253);
+    transition: box-shadow 1s ease-in-out;
+    cursor: pointer;
+}
+
+.menuH:hover{
+    box-shadow: 0 0 0 2px rgb(128, 203, 253), 0 0 0 2px rgb(128, 203, 253);
+}
+
+span.hamburguer{
+    margin-top: 12px;
+    display: block;
+    background: black;
+    width: 18px;
+    height: 1.8px;
+    position: relative;
+    transition: .5s ease-in-out;
+
+}
+
+span.hamburguer:before, span.hamburguer:after{
+    position: absolute;
+    background: black;
+    width: 100%;
+    display: block;
+    content: '';
+    transition: .5s ease-in-out;
+}
+
+.hamburguer:before{
+    top: -5.6px;
+    height: 1.7px;
+}
+
+.hamburguer:after{
+    bottom: -6px;
+    height: 1.6px;
+}
+
+/*----------------------------------input---------------------------------------------*/
+
+input#Hchecked{
+    display: none;
+}
+
+
+input#Hchecked:checked ~ label .menuH{
+    z-index: 9;
+    box-shadow: 0 0 0 79vh rgb(128, 203, 253), 0 0 0 25vw rgb(128, 203, 253);
+}
+
+input#Hchecked:checked ~ .menuH-Open{
+    right: 100px;
+    z-index: 10;
+    opacity: 1;
+}
+
+input#Hchecked:checked ~ img #FAQ-New{
+    opacity: 1;
+}
+
+input#Hchecked:checked ~ img #FAQ{
+    opacity: 0;
+}
+
+input#Hchecked:checked ~ label .hamburguer{
+    z-index: 11;
+    transform: rotate(45deg);
+}
+
+input#Hchecked:checked ~ label .hamburguer:before{
+    z-index: 11;
+    transform: rotate(90deg);
+    top:0;
+}
+
+input#Hchecked:checked ~ label .hamburguer:after{
+    z-index: 11;
+    transform: rotate(90deg);
+    bottom:0;
+}
+
+/*----------------------------- New Right -----------------------------------*/
+
+.menuH-Open{
+    opacity: 0;
+    width: 380px;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0px;
+    transition: 0.5s 1s ease-in-out;
+}
+
+.NewRight-header{
+    align-items: center;
+    align-self: center;
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    left: -150px;
+}
+
+label.labelDivisoria{
+    padding-left: 10px;
+    width: 200px;
+    height: 30px;
+    background: #FFFFFF;
+    border: none;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+    color: #00AAFF;
+    font-size: 15px;
+    font-weight: bolder;
+    padding-top: 5px;
+}
+
+.dias-checkbox{
+    width: 35px;
+    height: 45px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.semanaBox{
+    width: 250px;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sectionRigth.title.new{
+    color: black;
+    margin-left: 35px;
+    margin-top: 10px;
+}
+
+#NewRight-icon{
+    margin-top: 2px;
+    max-width: 60px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+}
+
+.FAQ-New{
+    width: 400px;
+    position: absolute;
+    bottom: 70px;
+    display: flex;
+    align-items: left;
+}
+
+.NewRight .menuH-Open{
+    opacity: 1;
+    right: 120px;
+    z-index: 10;
+    animation: opacityOff 1.7s 1s ease-in-out;
+}
+
+.NewRight .FAQ, .NewRight .dataComponent{
+    opacity: 0;
+    transition: .25s .8s ease-in-out;
+}
+
+.OldRight .headerRigth, .OldRight .FAQ, .OldRight .dataComponent{
+    opacity: 1;
+    transition: .25s .8s ease-in-out;
+}
+
+.OldRight .menuH-Open{
+    opacity: 0;
+    right: 0px;
+    z-index: -1;
+    animation: opacityOn .25s -.12s ease-in-out;
+}
+
+@keyframes opacityOn {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes opacityOff {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+ 

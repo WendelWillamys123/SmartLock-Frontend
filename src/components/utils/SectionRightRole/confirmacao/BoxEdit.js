@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 
-import api from '../../../../services/api';
+import api from '../../../services/api';
 
 function Check({ id = 'shadow', onClose = () => {}, _id, load = () =>{}, type}){
 
@@ -13,21 +13,16 @@ function Check({ id = 'shadow', onClose = () => {}, _id, load = () =>{}, type}){
     }
 
     async function onUpdate(){
-        if(type==="Group"){
-            const response = await api.put('/groups/update', {headers: {_id: _id, name: name}});
+
+        if(type==="Grupo"){
+            const response = await api.put('/groups', { _id, name});
             load(response.data);
-        }
-        if(type==="Lock"){
-            const response = await api.put('/locks/update', {headers: {_id: _id, name: name}});
+        } else if(type==="Trava"){
+            const response = await api.put('/locks', { _id, name});
             load(response.data);
-        } 
-        
-        if(type==="Physical Local"){
-            const response = await api.put('/physicalLocals/update', {
-                    _id: _id,
-                    name: name
-                });
-            return load(response.data);
+        } else if(type==="Local Fisíco"){
+            const response = await api.put('/localFisico', { _id, name});
+            load(response.data);
         }     
      }
 
