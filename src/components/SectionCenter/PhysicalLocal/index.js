@@ -25,30 +25,19 @@ function PhysicalLocals(){
              const response = await api.get('/physicalLocals');
 
              var height = window.screen.height;
-             var x = window.matchMedia("(max-width: 700px)")
-
-            
-                console.log((response.data.slice(0,20).length)/4)
              
                 var main = document.getElementById("centerPhysicalLocal");
 
                 if(height >= 761){ 
-                main.style.gridTemplateRows = `repeat(${((response.data.slice(0, 24).length)/4)}, 120px)`;
+                if(response.data.slice(0, 24).length === 24) main.style.gridTemplateRows = `repeat(${((response.data.slice(0, 24).length)/4)}, 120px)`;
                 setPhysicalLocals(response.data.slice(0, 24));
                 setArray(response.data.slice(0, 24));
              } 
              if(height < 760 && height>= 690){
-                main.style.gridTemplateRows = `repeat(${((response.data.slice(0, 20).length)/4)}, 120px)`;
+                if(response.data.slice(0, 24).length === 20) main.style.gridTemplateRows = `repeat(${((response.data.slice(0, 20).length)/4)}, 120px)`;
                 setPhysicalLocals(response.data.slice(0, 20));
                 setArray(response.data.slice(0, 20));
              }
-            
-              
-              
-
-             
-            
-            
          }
          loaderPhysicalLocals();
      }, []);
@@ -182,7 +171,7 @@ function PhysicalLocals(){
                       else body.className = "NewRight";
                   }}/>
                   
-                  <label for="Hchecked">
+                  <label htmlFor="Hchecked">
                             <div className="menuH center">
                                 <span className="hamburguer center"></span>
                             </div>

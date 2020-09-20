@@ -4,9 +4,6 @@ import './style.css';
 import { useState } from "react";
 import { useEffect } from "react";
 
-import LockIcon from '@material-ui/icons/LockOutlined';
-import DoorIcon from '@material-ui/icons/MeetingRoomOutlined';
-import GroupIcon from '@material-ui/icons/PeopleAltOutlined';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import RoleIcon from '@material-ui/icons/SettingsOutlined';
@@ -16,7 +13,6 @@ import UpdateIcon from '@material-ui/icons/Update';
 function SectionLeft({component, onDelete=() =>{}, onUpload=() =>{}}){ 
 
     const [render, setRender] = useState('');
-    const [boxRm, setBoxRm] = useState(false);
     const [positionOne, setPositionOne] = useState(0);
     const [positionTwo, setPositionTwo] = useState(3);
     const [componentTime, setComponentTime] = useState('')

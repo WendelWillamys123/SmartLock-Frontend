@@ -104,7 +104,7 @@ function AddComponents({reload = () =>{}}){
                         value={name}
                         onChange={e => setName(e.target.value)}/>   
                       
-                    <select name="typeBox" id="TypeBox">
+                    <select name="typeBox" defaultValue='DEFAULT' id="TypeBox">
                         <option className="TypeBoxOptions" value="group" selected>Groups</option>
                         {type !== "Physical Local" &&(<option className="TypeBoxOptions" value="physicalLocal">Physical Local</option>)}
                     </select>                    
