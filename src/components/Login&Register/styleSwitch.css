@@ -1,0 +1,110 @@
+/* Estilo iOS */
+.switch__container {
+    margin: 5px auto;
+    width: 40px;
+  }
+
+  .checkboxPosition{
+      margin: 15px 0px 20px -60px;
+  }
+
+  .P-checkbok{
+    width: 120px;
+    height: 20px;
+    font-size: 13px;
+    font-weight: lighter;
+    margin: -40px 0px 10px -20px;
+    color: #7f8c8d;
+    }
+  
+  .switch {
+    visibility: hidden;
+    position: absolute;
+    margin-left: 0;
+  }
+  
+  .switch + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+  }
+  
+  .switch--shadow + label {
+    padding: 2px;
+    width: 40px;
+    height: 20px;
+    background-color: #dddddd;
+    border-radius: 40px;
+  }
+  .switch--shadow + label:before,
+  .switch--shadow + label:after {
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    content: "";
+  }
+  .switch--shadow + label:before {
+    right: 1px;
+    background-color: #f1f1f1;
+    border-radius: 42px;
+    transition: background 0.4s;
+  }
+  .switch--shadow + label:after {
+    width: 42px;
+    background-color: #fff;
+    border-radius: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s;
+  }
+  .switch--shadow:checked + label:before {
+    background-color: #CB66FF;
+  }
+
+  .switch--shadow:checked + label:after {
+    transform: translateX(40px);
+  }
+  
+  /* Estilo Flat */
+  .switch--flat + label {
+    padding: .5px;
+    width: 40px;
+    height: 20px;
+    background-color: #dddddd;
+    border-radius: 40px;
+    transition: background 0.4s;
+  }
+  .switch--flat + label:before,
+  .switch--flat + label:after {
+    display: block;
+    position: absolute;
+    content: "";
+  }
+  .switch--flat + label:before {
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background-color: #fff;
+    border-radius: 40px;
+    transition: background 0.4s;
+  }
+  .switch--flat + label:after {
+    top: 4px;
+    left: 4px;
+    bottom: 4px;
+    width: 14px;
+    background-color: #dddddd;
+    border-radius: 40px;
+    transition: margin 0.4s, background 0.4s;
+  }
+  .switch--flat:checked + label {
+    background-color: #CB66FF;
+  }
+  .switch--flat:checked + label:after {
+    margin-left: 18px;
+    background-color: #CB66FF;
+  }

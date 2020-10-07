@@ -82,7 +82,7 @@ function Locks (){
         
         if(lock.holderPhysicalLocal !== null){
             lock.holder.map(async item => {
-            item.locks.map(el => {
+            item.locks.map(el => () => {
                 if (lock._id === el)  setOwner(item);
             })
         }); 
@@ -93,7 +93,7 @@ function Locks (){
         } 
         else{
             lock.holder.map(async item => {
-                item.locks.map(el => {
+                item.locks.map(el => () => {
                     if (lock._id === el)  setOwner(item);
                 })
             }); 

@@ -30,8 +30,6 @@ function User(){
             var dataToken = sessionStorage.getItem("tokenLocal");
             var tokenLocal = JSON.parse(dataToken);
             
-            console.log(userId);
-
             if(userId !== null || userId !== undefined || userId !== false){
 
             const response = await api.get('/users/search', {
@@ -89,16 +87,12 @@ function User(){
 
         if(newPin !== "") newPins.push(newPin);        
 
-        const response = await api.put('/users/update', {
+        await api.put('/users/update', {
              _id: id,
             name: name,
             email: email,
             pins: newPins,
             registry: registry
-        }, {
-            headers: {
-                authorization: `Bearer ${tokenLocal}`
-            }
         })
     
         window.location.reload()

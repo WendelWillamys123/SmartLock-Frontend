@@ -1,5 +1,5 @@
 
-main.center.physicalLocals{
+main.center.groups{
     background: none ;
     left: 0;
     top: 60px;
@@ -20,17 +20,8 @@ main.center.physicalLocals{
   right: 120px;
 }
 
-p.description.owner{
-  position: relative;
-  color: #000000bb;
-  margin: 30px 0px 0px 45px ;
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: lighter;
-  font-size: 10px;
-}
 
-div.buttonComponent.physicalLocals{
+div.buttonComponent.groups{
     margin-top: 20px;
 }
 
@@ -57,14 +48,14 @@ div.FAQ-main{
 }
 
 @media (max-width: 629px) {
-    main.center.physicalLocals {
+    main.center.groups {
         grid-template-columns: repeat(1, 220px);
         grid-template-rows: repeat(6, 160px);
     }
   }
 
   @media (min-width:630px) and (max-width: 934px) {
-    main.center.physicalLocals {
+    main.center.groups {
         grid-template-columns: repeat(2, 220px);
         grid-template-rows: repeat(6, 160px);
     }
@@ -72,7 +63,7 @@ div.FAQ-main{
 
 
 @media (min-width:935px) and (max-width: 1198px) {
-    main.center.physicalLocals {
+    main.center.groups {
         grid-template-columns: repeat(3, 220px);
         grid-template-rows: repeat(6, 160px);
     }

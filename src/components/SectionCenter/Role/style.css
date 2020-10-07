@@ -1,0 +1,178 @@
+
+div.body{
+    width: 100%;
+    height: 100%;
+}
+
+div#deletePersonRole{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    right: 20px;
+}
+
+div.dadosRole{
+    position: relative;
+    z-index: 1;
+    top: 30px;
+    width: 1000px;
+    height: 600px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-left: none;
+    box-sizing: border-box;
+    border-radius: 0px 50px 50px 0px;
+    background-color: white;
+    box-shadow: 4px 0 4px 0px rgba(0, 0, 0, 0.1), 1px 4px 4px 0px rgba(0, 0, 0, 0.281);
+    align-items: center;
+}
+
+header.role{
+    color: white;
+    padding: 20px;
+    font-size:20px;
+    text-align: left;
+    position: absolute;
+    z-index: 2;
+    display: inline-block;
+    top: 30px;
+    left: 0;
+    width: 1000px;
+    height: 75px;
+    background: linear-gradient(271.58deg, #8A90A7 9.14%, rgba(255, 255, 255, 0) 114.13%), #EE7EF8;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 50px 50px 0px;
+}
+
+header.role label{
+    display: flex;
+    margin: -40px 10px 10px 75px;
+}
+
+form.roleData{
+    column-gap: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    width: 100%;
+    height: 220px;
+}
+
+
+form.roleData label{
+    font-size: 15px;
+    color: #515354;
+    left: 10px;
+    text-transform: capitalize; 
+    font-weight: bolder ;
+    margin-bottom: 10px;
+}
+
+label.labelBold{
+    font-size: 13px;
+    font-weight: bolder;
+    font-style: normal;
+    color: #515354;
+    left: 10px;
+    text-transform: capitalize;
+}
+
+div.infosRole{
+    text-align: left;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    
+}
+
+div.infosRole input{
+    margin: 3px 0px 3px 0px;
+    padding: 10px;
+    color: #666;
+    height: 25px;
+    width: 250px;
+    font-size: 14px;
+    border: solid 1px #aaccaa91;
+    border-radius: 20px;
+}
+
+div#buttonsRole{
+    margin-left: 560px;
+    margin-top: 110px;
+    display: flex;
+    flex-direction: row;
+    right: 0;
+}
+
+div.carrosseisRole{
+    width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.carroselTitle.Role{
+    font-size: 13px;
+    color: #515354;
+    position: relative;
+    text-transform: capitalize;
+}
+
+.add.Shedule{
+    position: absolute;
+    top:0;
+    right: 130px;
+  }
+
+
+
+.carrosel.role{
+    width: 350px;
+    height: 80px;
+    margin: 15px 5px 20px 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.carrosel.role + .carrosel.role{
+    margin: 28px 5px 0 18px;
+}
+
+.RightbuttonComponent.typeRole{
+    margin-top: 30px;
+    width: 50px;
+    height: 50px;
+    padding-top: 10px;
+}
+
+strong.Right.Item{
+    margin-top: 10px;
+    min-width: 70px;
+    max-width: 90px;
+}
+
+.carroselTitle.Role{
+    font-size: 13px;
+    color: #515354;
+    left: 10px;
+    text-transform: capitalize;
+    font-weight: bolder;
+}
+
+p.Right-Notify.Condicional{
+    text-align: left;
+    font-size: 13px;
+    color: #515354;
+    font-weight: normal;
+    font-style: normal;
+    position: relative;
+    margin: 25px 0 0 10px;
+}
+
+p.Right-Notify.Condicional ~ p.Right-Notify.Condicional {
+    margin: 40px 0 0 10px;
+}
+
+

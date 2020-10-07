@@ -89,7 +89,7 @@ function PhysicalLocals(){
     function getOwner(physicalLocal){
 
             physicalLocal.holder.map(async item => {
-                item.physicalLocal.map(el =>{ if (physicalLocal._id === el)  setOwner(item)})
+                item.physicalLocal.map(el => () => { if (physicalLocal._id === el){}  setOwner(item)})
             }); 
       
     }

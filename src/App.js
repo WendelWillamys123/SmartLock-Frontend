@@ -18,6 +18,8 @@ import Admin from './components/SectionCenter/Admin';
 
 import Page404 from "./services/Page404"
 import {PrivateRoute} from './routes/PrivateRoute.js';
+import Groups from './components/SectionCenter/Groups';
+import Role from './components/SectionCenter/Role';
 
 
  function App() {
@@ -35,9 +37,11 @@ import {PrivateRoute} from './routes/PrivateRoute.js';
               <PrivateRoute exact path="/home" component={Home}/>
               <PrivateRoute exact path="/users" component={Users}/>
               <PrivateRoute exact path="/admins" component={Admins}/>
+              <PrivateRoute exact path="/groups" component={Groups}/>
               <PrivateRoute exact path="/locks" component={Locks}/>
               <PrivateRoute exact path="/physicalLocal" component={PhysicalLocal}/>
               <PrivateRoute exact path="/roles" component={Roles}/>
+              <PrivateRoute exact path="/role" component={Role}/>
 
               <PrivateRoute exact path="/user" component={User}/>
               <PrivateRoute exact path="/admin" component={Admin}/>
@@ -46,7 +50,8 @@ import {PrivateRoute} from './routes/PrivateRoute.js';
                   window.location.href==="http://localhost:3000/home" || window.location.href==="http://localhost:3000/admins" ||
                    window.location.href==="http://localhost:3000/locks" || window.location.href==="http://localhost:3000/physicalLocal" || 
                    window.location.href==="http://localhost:3000/user" || window.location.href==="http://localhost:3000/admin" ||
-                   window.location.href==="http://localhost:3000/roles" || window.location.href==="http://localhost:3000/role");
+                   window.location.href==="http://localhost:3000/roles" || window.location.href==="http://localhost:3000/role" ||
+                   window.location.href==="http://localhost:3000/groups");
                   else{
                      window.setTimeout(function(){ window.location = "http://localhost:3000/"; },5000)
                   return <Page404/> 

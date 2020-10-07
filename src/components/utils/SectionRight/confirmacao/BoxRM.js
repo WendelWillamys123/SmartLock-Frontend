@@ -12,27 +12,24 @@ function Check({ id = 'shadow', onClose = () => {}, _id, type, onDelete=()=>{}})
 
     async function onDeleteComponent(){
         
-        if(type==="Grupo"){
-             await api.delete('/groups/delete', { 
-                headers:{
-                    _id: _id,
-                }, 
-            });
-        } else if(type==="Lock"){
-            await api.delete('/locks/delete', { 
-                headers:{
-                    _id: _id,
-                }, 
-            });
-        }
-        else if(type==="Physical Local"){
-            await api.delete('/physicalLocal/delete', { 
-                headers:{
-                    _id: _id,
-                }, 
-            });
-        }
+        if(type==="Group") await api.delete('/groups/delete', {
+            headers: {
+                 _id: _id
+            }
+         });
+
+        if(type==="Lock") await api.delete('/locks/delete', {
+            headers: {
+                 _id: _id
+            }
+         });
         
+        if(type==="Physical Local") await api.delete('/physicalLocals/delete', {
+            headers: {
+                 _id: _id
+            }
+         });
+                
          onDelete();
          onClose();
      }
@@ -45,11 +42,11 @@ function Check({ id = 'shadow', onClose = () => {}, _id, type, onDelete=()=>{}})
     return(
         <div className="shadow" id={id} onClick={handleClose}>
             <div className="modal">
-                <h1>{`Excluir ${type}`}</h1>
-                <p>{`Os dados do ${type} serão apagados permanentemente. Deseja excluir mesmo assim?`}</p>
+                <h1>{`Delete ${type}`}</h1>
+                <p>{`The ${type} data will be permanently deleted. Do you want to delete anyway?`}</p>
                 <div className="buttons">
-                <button type="reset" className="cancelar" id="menorButton" onClick={onClose}>Cancelar</button>
-               <button type="submit" className="cadastrar" id="menorButton" onClick={handlDelete}>Excluir</button>
+                <button type="reset" className="cancelar" id="menorButton" onClick={onClose}>Cancel</button>
+               <button type="submit" className="cadastrar" id="menorButton" onClick={handlDelete}>Delete</button>
                </div>
             </div>
         </div>

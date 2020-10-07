@@ -8,6 +8,7 @@
     width: auto;
     height: auto;
     transition: 1s 1s ease-in-out;
+    z-index: 9;
 }
 
 #FAQ{

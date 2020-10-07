@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import "./styleCadastro.css";
 import api from '../../../../services/api.js';
 
@@ -7,23 +7,6 @@ function Cadastro ({onClose = () => {}, load}){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState([]);
-
-    const [organization, setOrganization] = useState('');
-    const [token, setToken] = useState('');
-
-    useEffect(()=>{
-        async function load(){
-            var data = sessionStorage.getItem("myID");
-            var myID = JSON.parse(data);
-            
-            var dataToken = sessionStorage.getItem("tokenLocal");
-            var tokenLocal = JSON.parse(dataToken);
-            
-            setToken("Bearer "+tokenLocal)
-            setOrganization(myID);
-        }
-        load();
-    }, []);
 
     async function cadastrarAdmin(e) {
         e.preventDefault();

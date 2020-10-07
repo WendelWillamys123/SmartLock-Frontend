@@ -27,17 +27,11 @@ function Admin(){
 
             if( adminId === "notAdmin") adminId =false;
 
-            var dataToken = sessionStorage.getItem("tokenLocal");
-            var tokenLocal = JSON.parse(dataToken);
-            
-            console.log(adminId);
-
             if(adminId !== null || adminId !== undefined || adminId !== false){
 
             const response = await api.get('/admins/search', {
                 headers: {
                     _id : adminId,
-                    authorization: `Bearer ${tokenLocal}`
                 }
             });
 
@@ -59,21 +53,14 @@ function Admin(){
     },[]);
 
    async function handleReset(){
-    
-        var dataToken = sessionStorage.getItem("tokenLocal");
-        var tokenLocal = JSON.parse(dataToken);
 
-        const response = await api.get('/admins/search', {_id: id}, {
-            headers: {
-                authorization: `Bearer ${tokenLocal}`
-            }
-        });
+        const response = await api.get('/admins/search', {_id: id});
 
         await sessionStorage.setItem("adminId", JSON.stringify(response.data._id));
 
         setName(response.data.name);
         setEmail(response.data.email);
-        if(response.data.registry==="") setRegistry("Adicionar uma registry");
+        if(response.data.registry==="") setRegistry("Add a registry");
         else setRegistry(response.data.registry);
         setPins(response.data.pins);
     }
@@ -82,23 +69,15 @@ function Admin(){
 
         e.preventDefault();
 
-        var dataToken = sessionStorage.getItem("tokenLocal");
-        var tokenLocal = JSON.parse(dataToken);
-
         var newPins = pins;
 
         if(newPin !== "") newPins.push(newPin);        
 
-        const response = await api.put('/admins/update', {
+        await api.put('/admins/update', {
              _id: id,
             name: name,
             email: email,
-            pins: newPins,
-            registry: registry
-        }, {
-            headers: {
-                authorization: `Bearer ${tokenLocal}`
-            }
+            
         })
     
         window.location.reload()

@@ -14,11 +14,11 @@ function Check({ id = 'shadow', onClose = () => {}, _id, load = () =>{}, type}){
 
     async function onUpdate(){
         if(type==="Group"){
-            const response = await api.put('/groups/update', {headers: {_id: _id, name: name}});
+            const response = await api.put('/groups/update', {_id: _id, name: name});
             load(response.data);
         }
         if(type==="Lock"){
-            const response = await api.put('/locks/update', {headers: {_id: _id, name: name}});
+            const response = await api.put('/locks/update', {_id: _id, name: name});
             load(response.data);
         } 
         

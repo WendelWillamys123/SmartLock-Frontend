@@ -189,6 +189,16 @@ div.Right{
     height: 90px;
 }
 
+div.RigthBody{
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 330px;
+    margin-top: 10px;
+}
+
 strong.Right{
     font-size: 13px;
     font-weight: normal;

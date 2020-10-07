@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './style.css';
 
-import api from '../../../services/api';
+import api from '../../../../services/api';
 
-function Check({ id = 'shadow', onClose = () => {}, _id, load = () =>{}, type}){
+function Check({ id = 'shadow', onClose = () => {}, _id, load = () =>{}, times}){
 
     const [name, setName] = useState('');
 
@@ -14,16 +14,16 @@ function Check({ id = 'shadow', onClose = () => {}, _id, load = () =>{}, type}){
 
     async function onUpdate(){
 
-        if(type==="Grupo"){
-            const response = await api.put('/groups', { _id, name});
-            load(response.data);
-        } else if(type==="Trava"){
-            const response = await api.put('/locks', { _id, name});
-            load(response.data);
-        } else if(type==="Local Fisíco"){
-            const response = await api.put('/localFisico', { _id, name});
-            load(response.data);
-        }     
+        console.log(_id, name, times);  
+        const response = await api.put('/roles/update', 
+            {
+                _id: _id,
+                name: name,
+                times: times
+            }
+        );
+
+        load(response.data);    
      }
 
     async function handleUpdate() {
@@ -34,10 +34,11 @@ function Check({ id = 'shadow', onClose = () => {}, _id, load = () =>{}, type}){
     return(
         <div className="shadow" id={id} onClick={handleClose}>
             <div className="modal">
-                <h1>{`Editar ${type}`}</h1>
+                <h1>Edit role</h1>
                 <div className="input">
-                        <label htmlFor="nameComponent" id="name">Digite o nome abaixo</label>
+                        <label htmlFor="nameComponent" id="name">Enter the new name</label>
                         <input 
+                        autocomplete="off"
                         name="nameComponent" 
                         id="nameComponent"
                         type="text" 
@@ -46,8 +47,8 @@ function Check({ id = 'shadow', onClose = () => {}, _id, load = () =>{}, type}){
                         onChange={e => setName(e.target.value)}/>   
                     </div>
                 <div className="buttons">
-                <button type="reset" className="cancelar" id="menorButton" onClick={onClose}>Cancelar</button>
-               <button type="submit" className="cadastrar" id="menorButton" onClick={handleUpdate}>Editar</button>
+                <button type="reset" className="cancelar" id="menorButton" onClick={onClose}>Cancel</button>
+               <button type="submit" className="cadastrar" id="menorButton" onClick={handleUpdate}>Edit</button>
                </div>
             </div>
         </div>

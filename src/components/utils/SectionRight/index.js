@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import './style.css';
 
 import { useState } from "react";
-import { useEffect } from "react";
 
 import LockIcon from '@material-ui/icons/LockOutlined';
 import DoorIcon from '@material-ui/icons/MeetingRoomOutlined';
@@ -104,8 +103,9 @@ function SectionLeft({type, owner, component, onDelete=() =>{}, onUpdate=() =>{}
                 <div className="RigthBody">
                     {carrosselRoles()}
                     {carrosselLocks()}
-                    {carrosselGroups()}
                     {carrosselPhysicalLocal()}
+                    {carrosselGroups()}
+                    
                     
                 </div>
 

@@ -1,11 +1,18 @@
 .carrosel.rigth{
     width: 350px;
     height: 80px;
-    margin: 15px 5px 0 18px;
+    margin: 15px 5px 20px 18px;
+    display: flex;
+    flex-direction: column;
 }
 
 .carrosel.rigth + .carrosel.rigth{
     margin: 28px 5px 0 18px;
+}
+
+
+.carrosel.rigth + .carrosel.rigth+  .carrosel.rigth{
+    margin: 50px 5px 0 18px;
 }
 
 .RightbuttonComponent.typeRigth{
@@ -16,28 +23,39 @@
 }
 
 strong.Right.Item{
+    text-align: center;
     margin-top: 10px;
     min-width: 70px;
     max-width: 90px;
+    line-height: 14px;
 }
 
 .carroselTitle.Rigth{
     font-size: 13px;
     color: #515354;
-    position: absolute;
-    left: 10px;
+    position: relative;
+    margin: 0 500px 0 0;
+    left: -10px;
     text-transform: capitalize;
+    height: 13px;
+}
+
+div.carroselBody{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 p.Right-Notify.Condicional{
+    text-align: left;
     font-size: 13px;
     color: #515354;
     font-weight: normal;
     font-style: normal;
     position: relative;
-    margin: 25px 0 0 -315px;
+    margin: 25px 0 0 10px;
 }
 
 p.Right-Notify.Condicional ~ p.Right-Notify.Condicional {
-    margin: 40px 0 0 -315px;
+    margin: 40px 0 0 10px;
 }

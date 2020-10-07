@@ -1,23 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './style.css';
 
 import api from '../../../../../services/api';
 
 function Check({ idUser = 'shadow', onClose = () => {}, user, load = false }){
 
-    const [token, setToken] = useState('');
 
-    useEffect(()=>{
-        async function load(){
-            var dataToken = sessionStorage.getItem("tokenLocal");
-            var tokenLocal = JSON.parse(dataToken);
-            console.log({user,tokenLocal})
-            
-            setToken("Bearer "+tokenLocal)
-        }
-        load();
-    }, []);
-
+    
     const handleClose = (e) => {
         if(e.target.id === idUser) onClose();
         else ;
@@ -28,7 +17,6 @@ function Check({ idUser = 'shadow', onClose = () => {}, user, load = false }){
         await api.delete('/users/delete',  {
             headers: { 
                 _id: user._id,
-                authorization: token
         }});
 
         if(load === false){

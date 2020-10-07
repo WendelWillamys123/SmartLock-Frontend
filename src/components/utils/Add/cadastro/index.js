@@ -50,18 +50,37 @@ function AddComponents({reload = () =>{}}){
             if(component !== "None"){
                 const response = await api.post('physicalLocals/create', {_id : component._id, name: nameAdd,  longitude: 0, latitude: 0})
                 if(response.status===200){
-                alert(`Physical Local \"${response.data.name}\" was created in the group \"${component.name}\"`)
+                alert(`Physical Local ${response.data.name} was created in the group ${component.name}`)
                     reload();
                     setNameAdd('');
                 }
             } else alert("Select a source group");
+        } 
+
+        if(window.location.href==="http://localhost:3000/groups"){
+            if(component !== "None"){
+                    const response = await api.post('groups/create', {_id : component._id, Localtype: value, name: nameAdd})
+                    if(response.status===200){
+                        alert(`Group ${response.data.name} was created in the ${type.toLowerCase()} ${component.name}`)
+                        reload();
+                        setNameAdd('');
+                    }
+
+            } else {
+                const response = await api.post('groups/create', {name: nameAdd})
+                if(response.status===200){
+                    alert(`Group ${response.data.name} was created`)
+                    reload();
+                    setNameAdd('');
+                }
+            }
         } 
           
         if(window.location.href==="http://localhost:3000/locks"){
             if(component !== "None"){
                 const response = await api.post('locks/create', {_id : component._id, name: nameAdd, Localtype: value})
                 if(response.status===200){
-                alert(`Lock \"${response.data.name}\" was created in the ${type.toLowerCase()} \"${component.name}\"`)
+                    alert(`Lock ${response.data.name} was created in the ${type.toLowerCase()} ${component.name}`)
                     reload();
                     setNameAdd('');
                 }
@@ -76,7 +95,7 @@ function AddComponents({reload = () =>{}}){
         var value = typeBox.options[typeBox.selectedIndex].value;
         
         if(value === "groups") setTypeSelect("Group")
-        if(value === "physicalLocals") setTypeSelect("Physical Local")
+        if(value === "physicalLocal") setTypeSelect("Physical Local")
         
         const response = await api.get(`/${value}s/search/name`, { headers: { name: name}});
 
@@ -147,6 +166,8 @@ function AddComponents({reload = () =>{}}){
                 
                 <div className="inputFormAdd">
                         <input 
+                        maxlength="24"
+                        data-ls-module="charCounter"
                         name="name" 
                         id="nameComponent"
                         type="text" 
@@ -155,7 +176,7 @@ function AddComponents({reload = () =>{}}){
                         value={nameAdd}
                         onChange={e => setNameAdd(e.target.value)}/>   
                 </div>
-                {(component !== "None") && (<strong id="sourceSelected"> {typeSelect} selecionado: {component.name} </strong>)}
+                {(component !== "None") && (<strong id="sourceSelected"> {typeSelect} selected: {component.name} </strong>)}
                 <div id="buttonDirection">
                     <button type="submit" className="cadastrar">Cadastrar</button>
                 </div>
