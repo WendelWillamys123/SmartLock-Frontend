@@ -1,5 +1,6 @@
 
 div.body{
+    z-index: 13;
     width: 100%;
     height: 100%;
 }
@@ -14,7 +15,6 @@ div#deletePersonRole{
 
 div.dadosRole{
     position: relative;
-    z-index: 1;
     top: 30px;
     width: 1000px;
     height: 600px;
@@ -28,12 +28,13 @@ div.dadosRole{
 }
 
 header.role{
+    position: absolute;
+    z-index: 1;
     color: white;
     padding: 20px;
     font-size:20px;
     text-align: left;
     position: absolute;
-    z-index: 2;
     display: inline-block;
     top: 30px;
     left: 0;

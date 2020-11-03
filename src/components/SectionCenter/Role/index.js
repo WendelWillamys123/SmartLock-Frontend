@@ -4,14 +4,14 @@ import './style.css';
 
 import { Fab } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Check from '../../utils/SectionRightRole/confirmacao/BoxRM';
+import Check from '../../utils/Role/confirmacao/BoxRM';
 
 import RoleIcon from '@material-ui/icons/SettingsOutlined';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import Carrossel from '../../utils/Add/Carrossel'
-import NewShedule from '../../utils/SectionRightRole/NewShedule/cadastro';
+import Carrossel from '../../utils/Role/Carrosel'
+import NewShedule from '../../utils/Role/NewShedule/cadastro';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 function Role(){
@@ -60,7 +60,7 @@ function Role(){
 
         sessionStorage.setItem("role", JSON.stringify(dataRole));
 
-         var data = sessionStorage.getItem("role");
+        var data = sessionStorage.getItem("role");
         var localRole= JSON.parse(data);
 
 
@@ -75,6 +75,29 @@ function Role(){
             setName(localRole.name);
             setTimes(localRole.times);
             setRender(response.data)}
+    }
+
+    async function reload(){
+        var data = sessionStorage.getItem("role");
+            var localRole= JSON.parse(data);
+
+
+            const response = await api.get('/app/organizations/search', {headers: {_id: localRole.organization}})
+
+            if( localRole === null) localRole =false;
+           
+            if(localRole !== null || localRole !== undefined || localRole !== false){
+            
+            setRole(localRole);
+            setId(localRole._id);
+            setName(localRole.name);
+            setTimes(localRole.times);
+            setRender(response.data)
+            } else {
+                window.location = "http://localhost:3000/home";
+                window.location.reload();
+            }
+            
     }
 
     const handleClickAdd = (e) => {
@@ -142,7 +165,7 @@ function Role(){
                 }
             })
         })
-            if (cont > 0) return (<Carrossel position="relative" index={4} type="groups" render={groups}/>); 
+            if (cont > 0) return (<Carrossel role={role._id} reload={reload} type="groups" render={groups}/>); 
             else return (<p className="Right-Notify Condicional"><b>Groups:</b> No groups</p>)
         }
     }
@@ -161,7 +184,7 @@ function Role(){
                 }
             })
         })
-            if (cont > 0) return (<Carrossel position="relative" index={4} type="physicalLocal" render={render.physicalLocal}/> )
+            if (cont > 0) return (<Carrossel role={role._id} reload={reload} type="physicalLocal" render={physicalLocal}/> )
             else return (<p className="Right-Notify Condicional"><b>Physical Local:</b> No physical locals</p>);
         }
     }
@@ -180,7 +203,7 @@ function Role(){
                 }
             })
         })
-            if (cont > 0) return (<Carrossel position="relative" index={4} type="locks" render={render.locks}/> )
+            if (cont > 0) return (<Carrossel position="relative" index={4} role={role._id} type="locks" render={locks}/> )
             else return (<p className="Right-Notify Condicional"><b>Locks:</b> No locks</p>)
         }
 
@@ -211,7 +234,28 @@ function Role(){
                         onChange={e => setName(e.target.value)}
                         />
                 </div>
+                <div className="main-seach search-add">
 
+                <form className="seachFormAdd" onSubmit={(e)=> handleClick(e)}>
+                    <strong>Filter</strong>
+                    <input
+                        className="inputAdd" 
+                        name="namePhysicalLocal" 
+                        id="namePhysicalLocal"
+                        placeholder="Name"
+                        type="text"  
+                        value={name}
+                        onChange={e => setName(e.target.value)}/>   
+                      
+                    <select name="typeBox" defaultValue='DEFAULT' id="TypeBox">
+                        <option className="TypeBoxOptions" value="group" selected>Groups</option>
+                        {role.name !== "Physical Local" &&(<option className="TypeBoxOptions" value="physicalLocal">Physical Local</option>)}
+                    </select>                    
+                    
+                    <button type="submit" className="filtrar formAdd">Search</button>                    
+                </form>
+                
+            </div>
             <div className="carrosseisRole">
                 <div className="carrosel role">
                     <strong className="carroselTitle Rigth"> <b>Schedules</b> </strong>

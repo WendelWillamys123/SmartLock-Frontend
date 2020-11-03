@@ -9,8 +9,8 @@ import RoleIcon from '@material-ui/icons/SettingsOutlined';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import UpdateIcon from '@material-ui/icons/Update';
 
-import BoxRM from './confirmacao/BoxRM';
-import BoxEdit from './confirmacao/BoxEdit';
+import BoxRM from '../../utils/Role/confirmacao/BoxRM';
+import BoxEdit from '../../utils/Role/confirmacao/BoxEdit';
 
 function SectionLeft({component, onDelete=() =>{}, onUpdate=() =>{}}){ 
 
@@ -85,91 +85,6 @@ function SectionLeft({component, onDelete=() =>{}, onUpdate=() =>{}}){
             
         {boxEdit? <BoxEdit times={render.times}  _id={render._id} onClose={()=> setBoxEdit(false)} load={reload}/> : null}
         {boxRm? <BoxRM times={render.times} _id={render._id} onClose={()=> setBoxRm(false)} onDelete={onDelete}/> : null}
-
-{/*
-            <div className="menuH-Open">
-                <header className="NewRight-header">
-                    <UpdateIcon style={{fontSize: 30, color: '#fff',margin: '15px 10px 0px 0px'}}/>
-                    <strong className="sectionRigth title new">Set up {render.name} schedule</strong>
-                </header>
-                <label className="labelDivisoria" type="text">Schedule</label>
-
-                <div className="carrosel">
-                <NavigateBeforeIcon style={{margin: "50px 10px 0 0"}} 
-                onClick={() => {
-                    if(positionOne === 0)alert("Sem mais resultados");
-                    else {
-                        setPositionOne(positionOne-3);
-                        setPositionTwo(positionTwo-3);
-                    }
-                }}/>
-            
-                {render.times !== undefined && (render.times.slice(positionOne, positionTwo).map( time => (
-                        <div className="RightbuttonComponent typeAdd" key={time.name} onClick={()=>{
-                            setComponentTime(time);
-                        }}>
-                            <RoleIcon style={{fontSize: 30}}/>
-                            <strong className="Right times">{time.name}</strong>
-                        </div>
-                    )))}
-
-                <NavigateNextIcon style={{position: "absolute", right: "50px", margin: "50px 0 0 0"}}
-                onClick={() => {
-                    if(positionTwo >= render.length) alert("Sem mais resultados");
-                    else {
-                        setPositionOne(positionTwo);
-                        setPositionTwo(positionTwo+3);
-                    }
-                }}/>
-            </div>
-
-                <label className="labelDivisoria" type="text">New schedule</label>
-                <div className="semanaBox">
-                <div className="dias-checkbox">
-                    <label for="campo-checkbox1">Seg</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" />
-                </div>
-
-                <div className="dias-checkbox">
-                    <label for="campo-checkbox1">Ter</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" />
-                </div>
-
-                <div className="dias-checkbox">
-                    <label for="campo-checkbox1">Qua</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" />
-                </div>
-
-                <div className="dias-checkbox">
-                    <label for="campo-checkbox1">Qui</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" />
-                </div>
-
-                <div className="dias-checkbox">
-                    <label for="campo-checkbox1">Sex</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" />
-                </div>
-
-                <div className="dias-checkbox">
-                    <label for="campo-checkbox1">Sab</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" />
-                </div>
-
-                <div className="dias-checkbox">
-                    <label for="campo-checkbox1">Dom</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" />
-                </div>
-                </div>
-
-                <div className="FAQ-New">
-                    <img id="FAQ-NEW" src="https://media-public.canva.com/MDWv4/MADuakMDWv4/1/s.svg"/>
-                        
-                    <p style={{width:"300px", margin: "-65px 0 0 -60px",color: "#000", fontWeight: "bolder", zIndex:"10"}} 
-                        className="sectionRigth description faq main">
-                            You can add a new schedule or edit existing schedules. 
-                            Remember each time, when together, form the access time of your role</p>
-                </div>
-            </div>*/}
             </>
 );
 };
