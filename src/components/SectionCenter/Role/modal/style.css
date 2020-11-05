@@ -1,0 +1,44 @@
+.shadowCheck.Modal{
+    display: flex;
+    align-items: center;
+}
+
+.modalCheck.Modal{
+    position: absolute;
+    width: 800px;
+    height: 600px; 
+    align-self: center;  
+    top: 10vh;
+    left: 25vw;
+}
+select#TypeBoxModal{
+    color:#515354;
+    padding-left: 10px;
+    width: 150px;
+    height: 30px;
+    background: #FFFFFF;
+    border: none;
+    box-sizing: border-box;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+}
+
+.buttons.FromModal{
+    position: absolute;
+    bottom: 30px;
+    right: 25px;
+}
+
+div.formComponents.FromModal{
+    margin-left: 0px;
+}
+
+div.ArrayModal{
+    margin-left: 50px;
+}
+
+.seachFormAdd.FromModal{
+    width: 500px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}

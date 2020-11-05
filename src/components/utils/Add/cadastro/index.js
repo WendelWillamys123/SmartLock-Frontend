@@ -53,6 +53,7 @@ function AddComponents({reload = () =>{}}){
                 alert(`Physical Local ${response.data.name} was created in the group ${component.name}`)
                     reload();
                     setNameAdd('');
+                    window.location.replace("http://localhost:3000/physicalLocal");
                 }
             } else alert("Select a source group");
         } 
@@ -72,6 +73,7 @@ function AddComponents({reload = () =>{}}){
                     alert(`Group ${response.data.name} was created`)
                     reload();
                     setNameAdd('');
+                    window.location.replace("http://localhost:3000/groups");
                 }
             }
         } 
@@ -83,6 +85,7 @@ function AddComponents({reload = () =>{}}){
                     alert(`Lock ${response.data.name} was created in the ${type.toLowerCase()} ${component.name}`)
                     reload();
                     setNameAdd('');
+                    window.location.replace("http://localhost:3000/locks");
                 }
             } else alert("Select a source group ou source physical local");
         } 

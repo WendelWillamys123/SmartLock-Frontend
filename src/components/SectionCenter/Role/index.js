@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import api from '../../../services/api'
 import './style.css';
 
-import { Fab } from '@material-ui/core';
+import {Fab } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Check from '../../utils/Role/confirmacao/BoxRM';
 
@@ -13,13 +13,22 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import Carrossel from '../../utils/Role/Carrosel'
 import NewShedule from '../../utils/Role/NewShedule/cadastro';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Modal from './modal';
 
 function Role(){
 
     const [id, setId] = useState("");
     const [role, setRole] = useState("");
     const [render, setRender] = useState([]);
+
+    const [renderComponent, setRenderComponent] = useState([]);
+    const [renderUsers, setRenderUsers] = useState([]);
+    const [typeComponent, setTypeComponent] = useState("groups");
+    const [nameComponent, setNameComponent] = useState("");
+    const [nameUsers, setNameUsers] = useState("");
+
     const [check, setCheck] = useState(false);
+    const [modal, setModal] = useState(false);
 
     const [name, setName] = useState(role.name);
     const [times, setTimes] = useState([]);
@@ -47,7 +56,9 @@ function Role(){
             setName(localRole.name);
             setTimes(localRole.times);
             setRender(response.data)
-            } else {
+            setRenderComponent(carrosselGroups(response.data.groups, localRole._id));
+            setRenderUsers(carrosselUsers(response.data.users, localRole._id));
+        } else {
                 window.location = "http://localhost:3000/home";
                 window.location.reload();
             }
@@ -123,18 +134,63 @@ function Role(){
 
         e.preventDefault();   
 
-        await api.put('/roles/update', {
+        const response = await api.put('/roles/update', {
              _id: id,
             name: name,
             times: times,
         })
     
+        sessionStorage.setItem("role", JSON.stringify(response.data));
         window.location.reload()
     }
 
     function handleClick() {
         setCheck(true);
     };
+
+    function handleClickModal() {
+        setModal(true);
+    };
+
+    async function handleClickComponents(e){
+        e.preventDefault();
+
+        var typeBox = document.getElementById('TypeBox');
+        var value = typeBox.options[typeBox.selectedIndex].value;
+        
+        const response = await api.get(`/${value}s/search/name`, { headers: { name: nameComponent}});
+
+        var renderCarrossel = [];
+
+        if(value === "group"){
+            setTypeComponent(value+"s")
+            renderCarrossel =  carrosselGroups(response.data, role._id);
+        }
+            if(value === "physicalLocal") {
+            setTypeComponent(value)
+            renderCarrossel =  carrosselPhysicalLocal(response.data);
+        }
+            if(value === "lock")  {
+            setTypeComponent(value+"s")
+            renderCarrossel = carrosselLocks(response.data);
+        }
+
+        setRenderComponent(renderCarrossel);
+        
+    }
+
+    async function handleClickUsers(e){
+        e.preventDefault();
+
+        const response = await api.get("/users/search/name", { headers: { name: nameUsers}});
+
+        var renderCarrossel = [];
+        
+        renderCarrossel = carrosselUsers(response.data);
+         
+        setRenderComponent(renderCarrossel);
+        
+    }
 
     function setTime(e, time){
         var value = e;
@@ -151,32 +207,56 @@ function Role(){
         time.start = aux.start
     }
 
+    function carrosselUsers(props, role){
+        var users = [];
+        var cont = 0
 
-    function carrosselGroups(){
+        if(props !== undefined){
+            props.map(user => {
+
+                if(user.roles !== null){
+
+                    user.roles.map(item =>{
+                        if(role === item){
+                            users.push(user);
+                            cont++;
+                    }})
+                }})
+        if (cont > 0) return users; 
+        else return null
+        }
+
+    }
+
+    function carrosselGroups(props, role){
         var groups = [];
         var cont = 0
 
-        if(render.groups !== undefined){
-        render.groups.map(group => {
+
+        if(props !== undefined){
+        props.map(group => {
+            
             group.roles.map(item =>{
-                if(role._id === item){
+                if(role === item){
                     groups.push(group);
                     cont++;
                 }
             })
         })
-            if (cont > 0) return (<Carrossel role={role._id} reload={reload} type="groups" render={groups}/>); 
-            else return (<p className="Right-Notify Condicional"><b>Groups:</b> No groups</p>)
+            
         }
+
+        if (cont > 0) return groups; 
+        else return null
     }
 
-    function carrosselPhysicalLocal(){
+    function carrosselPhysicalLocal(props){
   
         var physicalLocal = [];
         var cont = 0
 
-        if(render.physicalLocal !== undefined){
-        render.physicalLocal.map(local => {
+        if(props !== undefined){
+        props.map(local => {
             local.roles.map(item =>{
                 if(role._id === item){
                     physicalLocal.push(local);
@@ -184,18 +264,18 @@ function Role(){
                 }
             })
         })
-            if (cont > 0) return (<Carrossel role={role._id} reload={reload} type="physicalLocal" render={physicalLocal}/> )
-            else return (<p className="Right-Notify Condicional"><b>Physical Local:</b> No physical locals</p>);
+            if (cont > 0) return physicalLocal
+            else return null
         }
     }
 
-    function carrosselLocks(){
+    function carrosselLocks(props){
  
         var locks = [];
         var cont = 0
 
-        if(render.locks !== undefined){
-        render.locks.map(lock => {
+        if(props !== undefined){
+        props.map(lock => {
             lock.roles.map(item =>{
                 if(role._id === item){
                     locks.push(lock);
@@ -203,8 +283,8 @@ function Role(){
                 }
             })
         })
-            if (cont > 0) return (<Carrossel position="relative" index={4} role={role._id} type="locks" render={locks}/> )
-            else return (<p className="Right-Notify Condicional"><b>Locks:</b> No locks</p>)
+            if (cont > 0) return locks
+            else return null
         }
 
     }
@@ -236,28 +316,16 @@ function Role(){
                 </div>
                 <div className="main-seach search-add">
 
-                <form className="seachFormAdd" onSubmit={(e)=> handleClick(e)}>
-                    <strong>Filter</strong>
-                    <input
-                        className="inputAdd" 
-                        name="namePhysicalLocal" 
-                        id="namePhysicalLocal"
-                        placeholder="Name"
-                        type="text"  
-                        value={name}
-                        onChange={e => setName(e.target.value)}/>   
-                      
-                    <select name="typeBox" defaultValue='DEFAULT' id="TypeBox">
-                        <option className="TypeBoxOptions" value="group" selected>Groups</option>
-                        {role.name !== "Physical Local" &&(<option className="TypeBoxOptions" value="physicalLocal">Physical Local</option>)}
-                    </select>                    
-                    
-                    <button type="submit" className="filtrar formAdd">Search</button>                    
-                </form>
-                
             </div>
-            <div className="carrosseisRole">
-                <div className="carrosel role">
+
+            <div id="buttonsRole">
+                <button type="reset" className="excluir menor" onClick={handleClickModal}>Assign</button>
+                <button type="submit" className="filtrar menor">Edit</button>
+
+            </div> 
+
+           
+            <div className="carrosel role">
                     <strong className="carroselTitle Rigth"> <b>Schedules</b> </strong>
                     <div className="carroselBody">
                     <NavigateBeforeIcon style={{margin: "50px 10px 0 0"}} 
@@ -287,24 +355,59 @@ function Role(){
                     </div>
                 </div>
 
-                    <div className="carrosselLocks">
-                    {carrosselLocks()}
-                    </div>
-                    <div className="carrosselLocks">
-                    {carrosselPhysicalLocal()}
-                    </div>
-                    <div className="carrosselLocks">
-                    {carrosselGroups()}
-                    </div>
+            <div className="carrosseisRole">
+                
+
+                <div className="formComponents">
+                    <form className="seachFormAdd" onSubmit={e => handleClickComponents(e)}>
+                        <strong>Filter</strong>
+                        <input
+                            className="inputAdd" 
+                            name="name" 
+                            id="name"
+                            placeholder="Name"
+                            type="text"  
+                            value={nameComponent}
+                            onChange={event => setNameComponent(event.target.value)}/>   
+                        
+                        <select name="typeBox" defaultValue='DEFAULT' id="TypeBox">
+                            <option className="TypeBoxOptions" value="group" selected>Groups</option>
+                        <option className="TypeBoxOptions" value="physicalLocal">Physical Local</option>
+                        <option className="TypeBoxOptions" value="lock">Locks</option>
+                        </select>                    
+                        
+                        <button type="submit" onClick={ handleClickComponents} className="filtrar formAdd">Search</button>                    
+                    </form>
+
+                    {renderComponent !== null ? (<Carrossel role={role._id} type={typeComponent} render={renderComponent}/> ): 
+                    (<p className="Right-Notify Condicional"><b>{typeComponent}:</b> No {typeComponent}</p>)}
+                </div>
+                
+                
+                <form className="seachFormAdd" onSubmit={e => handleClickUsers(e)}>
+                    <strong>Filter</strong>
+                    <input
+                        className="inputAdd" 
+                        name="name" 
+                        id="name"
+                        placeholder="Name"
+                        type="text"  
+                        value={nameUsers}
+                        onChange={event => setNameUsers(event.target.value)}/>   
+                                      
+                    
+                    <button type="submit" onClick={ handleClickComponents} className="filtrar formAdd">Search</button>                    
+                </form>
+
+                    
+                {renderUsers !== null ? (<Carrossel role={role._id} type="users" render={renderUsers}/> ): 
+                 (<p className="Right-Notify Condicional"><b>Users:</b> No users</p>)}
+                
+               
 
                 </div>
 
-                 <div id="buttonsRole">
-
-                <button type="reset" className="excluir" onClick={handleReset}>Cancel</button>
-                <button type="submit" className="filtrar">Save</button>
-
-            </div> 
+                 
             </form>
            
         </div>
@@ -313,6 +416,7 @@ function Role(){
                 {visibleForm ? <NewShedule id={id} onClose={()=> setVisibleForm(false)} load={load}/> : null}
                 </div>
             {check ? <Check role={role} onClose={()=> setCheck(false)}/> : null}
+            {modal ? <Modal role={role} onClose={()=> setModal(false)}/> : null}
         </div>
     )
 }

@@ -95,25 +95,25 @@ function Cadastro ({onClose = () => {}, id, load}){
                         <p className="descriptionDias">Select days of the week</p>
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Sun</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" 
+                    <input type="checkbox" value="0" id="campo-checkbox1" 
                     onChange={()=>setDay(0)}/>
                 </div>
 
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Mon</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" 
+                    <input type="checkbox" value="0" id="campo-checkbox1" 
                     onChange={()=>setDay(1)}/>
                 </div>
 
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Tue</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" 
+                    <input type="checkbox" value="0" id="campo-checkbox1" 
                     onChange={()=>setDay(2)}/>
                 </div>
 
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Wed</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" 
+                    <input type="checkbox" value="0"  id="campo-checkbox1" 
                     onChange={()=>setDay(3)}/>
                 </div>
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './style.css'
 
 import DoorIcon from '@material-ui/icons/MeetingRoomOutlined';
@@ -10,14 +10,17 @@ import UserIcon from '@material-ui/icons/PersonOutlineOutlined';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import Check from './check';
 
-function Carrosel({type, render, role, reload= ()=>{}}) {
+function CarroselModal({type, render, updateComponentes = () => {}}) {
 
     const [positionOne, setPositionOne] = useState(0);
     const [positionTwo, setPositionTwo] = useState(4);
     const [visibility, setVisibility] = useState(false);
+
+    const [comps, setComps] = useState([]);
+
     const [item, setItem] = useState()
+
 
     function setIcon(){
         if(type === "groups") return <GroupIcon style={{margin: " 0 0 10px 0", fontSize: 30}}/>
@@ -29,6 +32,23 @@ function Carrosel({type, render, role, reload= ()=>{}}) {
     function handleClose(){
         setVisibility(false);
     }
+
+    function setComp(comp){
+
+        var aux = [];
+
+        if(comps.length !== 0) aux = comps;
+        else aux = render;
+        
+        var index = aux.findIndex(item => item.object === comp.object)
+
+        aux[index].selected = !aux[index].selected;
+
+       setComps(aux);
+
+       updateComponentes(type, aux);
+    }
+
         return (
             <div className="CarroselX">
                     
@@ -44,14 +64,18 @@ function Carrosel({type, render, role, reload= ()=>{}}) {
                         }}/>
             
                     {render!== undefined && (render.slice(positionOne, positionTwo).map( item => (
-                        <div className="itemCarrosel" key={item._id}>
-                            <button type="button" onClick={ () =>{
-                                setVisibility(true);
-                                setItem(item)
-                                }}className="minibuttonRemove"><span className="miniX"></span></button>
+                        <>
+                       
+                        <label for="campo-chechbox-modal">
+                        <div className="itemCarrosel" mudacor key={item.object._id}>    
+                        <div className="boxSelect-Modal">
+                            <input type="checkbox" id={item.object._id}  className="campo-checkbox-modal" onChange={()=>setComp(item)}/>    
+                            </div>   
                             {setIcon()}
-                            <strong className="Right Item">{item.name}</strong>
+                            <strong className="Right Item">{item.object.name}</strong>
                         </div>
+                        </label>
+                        </>
                     )))}
 
                     <NavigateNextIcon style={{margin: "50px 0 0 0"}}
@@ -63,8 +87,7 @@ function Carrosel({type, render, role, reload= ()=>{}}) {
                             }
                         }}/>
                     </div>
-                    {visibility? console.log(item):null}
-                    {visibility? <Check item={item}  type={type} role={role} reload={reload} handleClose={handleClose}/> : null}
+                    
                     
                 </div>
             
@@ -72,4 +95,4 @@ function Carrosel({type, render, role, reload= ()=>{}}) {
     }
 
 
-export default Carrosel;
+export default CarroselModal;

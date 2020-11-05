@@ -1,0 +1,22 @@
+#campo-checkbox-modal{
+    margin: 0;
+    border: solid 1px black;
+    border-radius: 100px;
+}
+
+#campo-checkbox-modal:checked .itemCarrosel{
+    background-color: blueviolet;
+}
+
+.boxSelect-Modal{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    padding: 0px;
+    border-radius: 2px 2px 2px 2px;
+    margin: -10px 0 0 35px;
+
+}

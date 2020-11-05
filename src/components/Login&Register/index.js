@@ -10,31 +10,42 @@ function Login() {
 
   async function createOrganization(e) {
     e.preventDefault();
-    const response = await api.post('/app/register', {
+
+    try{
+      const response = await api.post('/app/register', {
         name,
         email,
         password, 
     });
-    if(response.status === 200){
+      sessionStorage.setItem("source", JSON.stringify("None"));
       sessionStorage.setItem("tokenLocal", JSON.stringify(response.data.token));
+      sessionStorage.setItem("myID", JSON.stringify(response.data.NewOrganization));
       window.location.replace("http://localhost:3000/home");
-    }else{
-      
+    }catch(error){
+      alert(error.response.data.error) 
     }
+    
   }
 
   async function loginOrganization(e) {
     e.preventDefault();
-    const response = await api.post('/app/authenticate', {
+
+    try{
+
+      const response = await api.post('/app/authenticate', {
         email,
         password, 
     });
-    if(response.status === 200){
-      sessionStorage.setItem("source", JSON.stringify("None"));
+
+    sessionStorage.setItem("source", JSON.stringify("None"));
     sessionStorage.setItem("tokenLocal", JSON.stringify(response.data.token));
     sessionStorage.setItem("myID", JSON.stringify(response.data.organization));
     window.location.replace("http://localhost:3000/home");
+    
+    }catch(error){
+      alert(error.response.data.error);
     }
+   
 }
 
 return (
@@ -61,15 +72,15 @@ return (
              </div>
               <form className="form" onSubmit={e => createOrganization(e)}>
                 <label className="label-input">
-                  <input type="text" placeholder="Name" onChange={e => setName(e.target.value)}/>
+                  <input type="text" placeholder="Name" required onChange={e => setName(e.target.value)} required/>
                 </label>
                   
                 <label className="label-input">
-                  <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
+                  <input type="email" placeholder="Email" required onChange={e => setEmail(e.target.value)} required/>
                 </label>
                   
                 <label className="label-input">
-                  <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+                  <input type="password" placeholder="Password" required onChange={e => setPassword(e.target.value)} required/>
                 </label>
                   
                   
@@ -101,11 +112,11 @@ return (
               
                   <form className="form" onSubmit={e => loginOrganization(e)}>
                       <label className="label-input">
-                        <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
+                        <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} required/>
                       </label>
                   
                       <label className="label-input">
-                        <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+                        <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required/>
                       </label>
               
                       <button className="btn btn-second">sign in</button>
