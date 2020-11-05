@@ -34,6 +34,7 @@ function Role(){
 
     const [name, setName] = useState(role.name);
     const [times, setTimes] = useState([]);
+    const [time, setTime] = useState("");
 
     const [positionOne, setPositionOne] = useState(0);
     const [positionTwo, setPositionTwo] = useState(4);
@@ -252,10 +253,13 @@ function Role(){
                         <button type="submit" className="filtrar menor">Edit</button>
 
                     </div> 
-
-                    <div className="shadowSection">
-                        <strong className="carroselTitle Rigth"> <b>Schedules</b> </strong>
-                        <div className="carroselBody">
+                    
+                    
+                        <div className="formComponents" style={{margin: "0 0 -50px 0px"}}>
+                            <div className="shadowSection">
+                                <div className="CarroselX" >
+                        <strong className="carroselXTitle"> <b>Schedules</b> </strong>
+                        <div className="carroselXBody">
                             
                             <NavigateBeforeIcon style={{margin: "50px 10px 0 0"}} 
                                 onClick={() => {
@@ -268,7 +272,8 @@ function Role(){
                 
                             {role.times!== undefined && (role.times.slice(positionOne, positionTwo).map( item => (
                                 <div className="RightbuttonComponent typeRole" key={item._id} onClick={()=>{
-                                    setModalSchedule(true)
+                                    setTime(item);
+                                    setModalSchedule(true);
                                 }}>
                                     <ScheduleIcon style={{margin: "0 0 10px 0 " , fontSize: 30}}/>
                                     <strong className="Right Item">{item.name}</strong>
@@ -285,7 +290,9 @@ function Role(){
                                 }}/>
                         </div>
                     </div>
-
+                            </div>
+                        </div>
+                    
                     <div className="carrosseisRole">
                         <div className="formComponents">
                     
@@ -350,7 +357,7 @@ function Role(){
 
             {check ? <Check role={role} onClose={()=> setCheck(false)}/> : null}
             {modal ? <Modal role={role} onClose={()=> setModal(false)}/> : null}
-            {modalSchedule ? <ModalSchedule time={role} onClose={()=> setModalSchedule(false)}/> : null}
+            {modalSchedule ? <ModalSchedule time={time} role={role} onClose={()=> setModalSchedule(false)}/> : null}
 
         </div>
     )

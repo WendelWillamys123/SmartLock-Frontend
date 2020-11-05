@@ -42,17 +42,20 @@ div.inputFormEdit + .inputFormEdit {
 input#inputSchedule{
     padding: 10px;
     padding-left: 20px;
-    margin: 0 5px 0 5px;
+    margin: 5px 5px 0 5px;
     color: #666;
     height: 25px;
-    width: 300px;
     font-size: 14px;
     border: solid 1px #aaccaa91;
     border-radius: 20px;
 }
 
+input#inputSchedule + input#inputSchedule{
+    width: 100px !important;
+}
+
 .semanaBox.FromModal{
-    margin: 20px 0 30px 0;
+    margin: 20px 0 20px 0;
     box-sizing: border-box;
     width: 300px;
     padding-left: 20px;

@@ -34,20 +34,20 @@ function Modal({role, onClose = () => {} }) {
         var renderCarrossel = [];
 
         if(value === "group"){
-            setTypeComponent(value+"s")
+            setTypeComponent(value+"s");
             renderCarrossel =  carrosselGroups(response.data, role._id);
         }
         if(value === "physicalLocal") {
-            setTypeComponent(value)
+            setTypeComponent(value);
             renderCarrossel =  carrosselPhysicalLocal(response.data, role._id);
         }
         if(value === "lock")  {
-            setTypeComponent(value+"s")
+            setTypeComponent(value+"s");
             renderCarrossel = carrosselLocks(response.data, role._id);
         }
 
         if(value === "user")  {
-            setTypeComponent(value+"s")
+            setTypeComponent(value+"s");
             renderCarrossel = carrosselUsers(response.data, role._id);
         }
 
@@ -114,7 +114,7 @@ function Modal({role, onClose = () => {} }) {
             }
             
         }
-console.log(users);
+
         if (cont > 0) return users; 
         else return null
 
@@ -190,15 +190,26 @@ console.log(users);
         var cont = 0
 
         if(props !== undefined){
-        props.map(lock => {
-            lock.roles.map(item =>{
-                if(role !== item){
-                    locks.push(lock);
-                    cont++;
-                }
-            })
-        })
-            
+            if(props !== null){
+                props.map(lock => {
+                    if(lock.roles !== undefined && lock.roles !== null && lock.roles.length > 0) {
+                        var exist = false
+                        lock.roles.map(item =>{
+                            if(role.toString() === item.toString()){
+                                exist = true;
+                            }
+                        })
+                        if(exist === false){
+                            locks.push({selected: false, object: lock});
+                            cont++;
+                        }
+                    } else{
+                        locks.push({selected: false, object: lock});
+                        cont++;
+                    }
+                 })
+
+            }
         }
         
         if (cont > 0) return locks
