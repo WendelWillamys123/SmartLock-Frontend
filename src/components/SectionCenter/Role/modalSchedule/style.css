@@ -1,0 +1,64 @@
+.shadowCheck.Modal{
+    display: flex;
+    align-items: center;
+}
+
+.modalCheck.Modal.Shedule{
+    padding: 10px;
+    position: absolute;
+    width: 500px;
+    height: 600px; 
+    align-self: center;  
+    top: auto;
+    left: auto;
+}
+
+form.FormEditSchedule{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+}
+form.FormEditSchedule label{
+    display: flex;
+    margin: 2px 0px 2px 10px;
+    color: #000000;
+    font-size: 13px;
+}
+
+div.inputFormEdit{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin: 20px 10px 0px 0px;
+    width: 65%;
+    padding: 5px;
+}
+
+div.inputFormEdit + .inputFormEdit {
+    margin-top: 0;
+}
+
+input#inputSchedule{
+    padding: 10px;
+    padding-left: 20px;
+    margin: 0 5px 0 5px;
+    color: #666;
+    height: 25px;
+    width: 300px;
+    font-size: 14px;
+    border: solid 1px #aaccaa91;
+    border-radius: 20px;
+}
+
+.semanaBox.FromModal{
+    margin: 20px 0 30px 0;
+    box-sizing: border-box;
+    width: 300px;
+    padding-left: 20px;
+}
+
+div.antigoHorario{
+    display: flex;
+    flex-direction: row;
+}

@@ -125,7 +125,7 @@ div.dias-checkbox{
 div.dias-checkbox label{
     margin-right: 10px;
 }
-input#campo-checkbox1{
+input.campo-checkbox1{
     width: 15px;
     height: 15px;
     border: 1px solid rgba(0, 0, 0, 0.596);

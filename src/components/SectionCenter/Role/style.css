@@ -114,7 +114,7 @@ div#buttonsRole{
 }
 
 div.carrosseisRole{
-    width: 800px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 40px;
@@ -155,6 +155,11 @@ div.carrosseisRole{
     padding-top: 10px;
 }
 
+.RightbuttonComponent.typeRole:hover{
+    background: linear-gradient(271.58deg, #8A90A7 9.14%, rgba(255, 255, 255, 0) 110.13%), #EE7EF8;
+    transition: ease-in-out .5s background;
+}
+
 strong.Right.Item{
     margin-top: 10px;
     min-width: 70px;
@@ -185,6 +190,20 @@ p.Right-Notify.Condicional ~ p.Right-Notify.Condicional {
 
 
 div.formComponents{
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     margin-top: 30px;
+}
+
+div.formComponents + div.formComponents{
+    margin-bottom: 0px;
+    margin-top: 0;
+}
+
+div.shadowSection{
+    padding: 0 0 0 30px;
+    margin: 0;
+    margin-left: -10px;
+    width: 102%;
+    height: 150px;
+    background-color: rgba(121, 121, 121, 0.226);
 }

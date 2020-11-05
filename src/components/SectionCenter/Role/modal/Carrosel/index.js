@@ -13,6 +13,8 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 function CarroselModal({type, render, updateComponentes = () => {}}) {
 
+    console.log(type, render);
+
     const [positionOne, setPositionOne] = useState(0);
     const [positionTwo, setPositionTwo] = useState(4);
     const [visibility, setVisibility] = useState(false);

@@ -26,13 +26,11 @@ function Modal({role, onClose = () => {} }) {
     async function handleClickComponents(e){
         e.preventDefault();
 
-        console.log(e.target);
         var typeBox = document.getElementById('TypeBoxModal');
         var value = typeBox.options[typeBox.selectedIndex].value;
         
         const response = await api.get(`/${value}s/search/name`, { headers: { name: nameComponent}});
 
-        console.log(response.data);
         var renderCarrossel = [];
 
         if(value === "group"){
@@ -48,8 +46,8 @@ function Modal({role, onClose = () => {} }) {
             renderCarrossel = carrosselLocks(response.data, role._id);
         }
 
-        if(value === "users")  {
-            setTypeComponent(value)
+        if(value === "user")  {
+            setTypeComponent(value+"s")
             renderCarrossel = carrosselUsers(response.data, role._id);
         }
 
@@ -82,26 +80,16 @@ function Modal({role, onClose = () => {} }) {
                 alert(error.response.data.error)
             }
         }))
+
+        onClose()
+        window.location.reload();
     }
 
     function carrosselUsers(props, role){
         var users = [];
         var cont = 0
 
-        if(props !== undefined){
-            props.map(user => {
-
-                if(user.roles !== null){
-
-                    user.roles.map(item =>{
-                        if(role === item){
-                            users.push(user);
-                            cont++;
-                    }})
-                }})
-        if (cont > 0) return users; 
-        else return null
-        }
+        console.log(props);
 
         if(props !== undefined){
             if(props !== null){
@@ -126,6 +114,9 @@ function Modal({role, onClose = () => {} }) {
             }
             
         }
+console.log(users);
+        if (cont > 0) return users; 
+        else return null
 
     }
     
@@ -243,7 +234,7 @@ function Modal({role, onClose = () => {} }) {
                             <option className="TypeBoxOptions" value="group" selected>Groups</option>
                         <option className="TypeBoxOptions" value="physicalLocal">Physical Local</option>
                         <option className="TypeBoxOptions" value="lock">Locks</option>
-                        <option className="TypeBoxOptions" value="users">Users</option>
+                        <option className="TypeBoxOptions" value="user">Users</option>
                         </select>                    
                         
                         <button type="submit" className="filtrar formAdd">Search</button>                    

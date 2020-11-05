@@ -14,12 +14,13 @@ import Carrossel from '../../utils/Role/Carrosel'
 import NewShedule from '../../utils/Role/NewShedule/cadastro';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Modal from './modal';
+import ModalSchedule from './modalSchedule';
 
 function Role(){
 
     const [id, setId] = useState("");
     const [role, setRole] = useState("");
-    const [render, setRender] = useState([]);
+    
 
     const [renderComponent, setRenderComponent] = useState([]);
     const [renderUsers, setRenderUsers] = useState([]);
@@ -29,6 +30,7 @@ function Role(){
 
     const [check, setCheck] = useState(false);
     const [modal, setModal] = useState(false);
+    const [modalSchedule, setModalSchedule] = useState(false);
 
     const [name, setName] = useState(role.name);
     const [times, setTimes] = useState([]);
@@ -55,7 +57,6 @@ function Role(){
             setId(localRole._id);
             setName(localRole.name);
             setTimes(localRole.times);
-            setRender(response.data)
             setRenderComponent(carrosselGroups(response.data.groups, localRole._id));
             setRenderUsers(carrosselUsers(response.data.users, localRole._id));
         } else {
@@ -67,67 +68,9 @@ function Role(){
         load();
     },[]);
 
-    async function load(dataRole){
-
-        sessionStorage.setItem("role", JSON.stringify(dataRole));
-
-        var data = sessionStorage.getItem("role");
-        var localRole= JSON.parse(data);
-
-
-        const response = await api.get('/app/organizations/search', {headers: {_id: localRole.organization}})
-
-        if( localRole === null) localRole =false;
-       
-        if(localRole !== null || localRole !== undefined || localRole !== false){
-
-            setRole(localRole);
-            setId(localRole._id);
-            setName(localRole.name);
-            setTimes(localRole.times);
-            setRender(response.data)}
-    }
-
-    async function reload(){
-        var data = sessionStorage.getItem("role");
-            var localRole= JSON.parse(data);
-
-
-            const response = await api.get('/app/organizations/search', {headers: {_id: localRole.organization}})
-
-            if( localRole === null) localRole =false;
-           
-            if(localRole !== null || localRole !== undefined || localRole !== false){
-            
-            setRole(localRole);
-            setId(localRole._id);
-            setName(localRole.name);
-            setTimes(localRole.times);
-            setRender(response.data)
-            } else {
-                window.location = "http://localhost:3000/home";
-                window.location.reload();
-            }
-            
-    }
-
     const handleClickAdd = (e) => {
         if(e.target.id === "add-area" || e.target.id === "add-area2") setVisibleForm(!visibleForm);
         else ;
-    }
-
-   async function handleReset(){
-
-        const response = await api.get('/search/roles', {
-            headers: {
-                _id: id
-            }
-        });
-
-        await sessionStorage.setItem("localRole", JSON.stringify(response.data._id));
-
-        setName(response.data.name);
-        setTimes(response.data.times);
     }
 
     async function handleUpdate(e){
@@ -190,21 +133,6 @@ function Role(){
          
         setRenderComponent(renderCarrossel);
         
-    }
-
-    function setTime(e, time){
-        var value = e;
-
-        var start = value.split(':')
-
-        var aux = time
-
-        aux.start = {
-            hours: parseInt(start[0]),
-            minutes: parseInt(start[1])
-        }
-
-        time.start = aux.start
     }
 
     function carrosselUsers(props, role){
@@ -291,132 +219,139 @@ function Role(){
 
 
     return(
+        
         <div className="body">
-        <header className="role">
-        <RoleIcon style={{ fontSize: 48, color: 'seashell', margin: '-5px 10px 0px 10px'}}/>
-            <label htmlFor="name">{role.name}</label>
+            <header className="role">
+                <RoleIcon style={{ fontSize: 48, color: 'seashell', margin: '-5px 10px 0px 10px'}}/>
+                <label htmlFor="name">{role.name}</label>
 
-            <div id="deletePersonRole">
-                <Fab aria-label="delete"  margin="0px 5px 0px 5px" size="small" onClick={handleClick}>
-                    <DeleteIcon style={{ fontSize: 20}}/>
-                </Fab>
-            </div>
+                <div id="deletePersonRole">
+                    <Fab aria-label="delete"  margin="0px 5px 0px 5px" size="small" onClick={handleClick}>
+                        <DeleteIcon style={{ fontSize: 20}}/>
+                    </Fab>
+                </div>
 
             </header>
-        <div className="dadosRole">
-            <form className="roleData" onSubmit={e => handleUpdate(e)}>
-                <div className="infosRole" id="role_Name">
-                    <label className="labelBold" htmlFor=""><b>Name</b></label>
-                    <input  name="nameUser" 
-                        type="text" 
-                        value={name}
-                        required
-                        onChange={e => setName(e.target.value)}
-                        />
-                </div>
-                <div className="main-seach search-add">
 
+            <div className="dadosRole">
+                
+                <form className="roleData" onSubmit={e => handleUpdate(e)}>
+                    
+                    <div className="infosRole" id="role_Name">
+                        <label className="labelBold" htmlFor=""> <b>Name</b> </label>
+                        <input  name="nameUser" 
+                            type="text" 
+                            value={name}
+                            required
+                            onChange={e => setName(e.target.value)}
+                            />
+                    </div>
+
+                    <div id="buttonsRole">
+                        <button type="reset" className="excluir menor" onClick={handleClickModal}>Assign</button>
+                        <button type="submit" className="filtrar menor">Edit</button>
+
+                    </div> 
+
+                    <div className="shadowSection">
+                        <strong className="carroselTitle Rigth"> <b>Schedules</b> </strong>
+                        <div className="carroselBody">
+                            
+                            <NavigateBeforeIcon style={{margin: "50px 10px 0 0"}} 
+                                onClick={() => {
+                                    if(positionOne === 0)alert("Sem mais resultados");
+                                    else {
+                                        setPositionOne(positionOne-4);
+                                        setPositionTwo(positionTwo-4);
+                                    }
+                                }}/>
+                
+                            {role.times!== undefined && (role.times.slice(positionOne, positionTwo).map( item => (
+                                <div className="RightbuttonComponent typeRole" key={item._id} onClick={()=>{
+                                    setModalSchedule(true)
+                                }}>
+                                    <ScheduleIcon style={{margin: "0 0 10px 0 " , fontSize: 30}}/>
+                                    <strong className="Right Item">{item.name}</strong>
+                                </div>
+                            )))}
+
+                            <NavigateNextIcon style={{margin: "50px 0 0 0"}}
+                                onClick={() => {
+                                    if(positionTwo >= role.times.length) alert("Sem mais resultados");
+                                    else {
+                                        setPositionOne(positionTwo);
+                                        setPositionTwo(positionTwo+4);
+                                    }
+                                }}/>
+                        </div>
+                    </div>
+
+                    <div className="carrosseisRole">
+                        <div className="formComponents">
+                    
+                            <form className="seachFormAdd  FromModal" onSubmit={e => handleClickComponents(e)}>
+                                <strong>Filter</strong>
+                                <input
+                                    className="inputAdd" 
+                                    name="name" 
+                                    id="name"
+                                    placeholder="Name"
+                                    type="text"  
+                                    value={nameComponent}
+                                    onChange={event => setNameComponent(event.target.value)}/>   
+                            
+                                <select name="typeBox" defaultValue='DEFAULT' id="TypeBox">
+                                    <option className="TypeBoxOptions" value="group" selected>Groups</option>
+                                    <option className="TypeBoxOptions" value="physicalLocal">Physical Local</option>
+                                    <option className="TypeBoxOptions" value="lock">Locks</option>
+                                </select>                    
+                            
+                                <button type="submit" onClick={ handleClickComponents} className="filtrar formAdd">Search</button>                    
+                            </form>
+
+                            <div className="shadowSection">
+                            {renderComponent !== null ? (<Carrossel role={role._id} type={typeComponent} render={renderComponent}/> ): 
+                            (<p className="Right-Notify Condicional"><b>{typeComponent}:</b> No {typeComponent}</p>)}
+                            </div>
+                        
+                        </div>
+                
+                        <div className="formComponents">
+                            <form className="seachFormAdd FromModal" onSubmit={e => handleClickUsers(e)}>
+                                <strong>Filter</strong>
+                                <input
+                                    className="inputAdd" 
+                                    name="name" 
+                                    id="name"
+                                    placeholder="Name"
+                                    type="text"  
+                                    value={nameUsers}
+                                    onChange={event => setNameUsers(event.target.value)}/>   
+                                                
+                                <button type="submit" onClick={ handleClickComponents} className="filtrar formAdd">Search</button>                    
+                            </form>
+     
+                            <div className="shadowSection">
+                                {renderUsers !== null ? (<Carrossel role={role._id} type="users" render={renderUsers}/> ): 
+                                (<p className="Right-Notify Condicional"><b>Users:</b> No users</p>)}
+                            </div>
+                        </div>
+                    </div>
+            
+                </form>
+           
             </div>
 
-            <div id="buttonsRole">
-                <button type="reset" className="excluir menor" onClick={handleClickModal}>Assign</button>
-                <button type="submit" className="filtrar menor">Edit</button>
 
-            </div> 
-
-           
-            <div className="carrosel role">
-                    <strong className="carroselTitle Rigth"> <b>Schedules</b> </strong>
-                    <div className="carroselBody">
-                    <NavigateBeforeIcon style={{margin: "50px 10px 0 0"}} 
-                        onClick={() => {
-                            if(positionOne === 0)alert("Sem mais resultados");
-                            else {
-                                setPositionOne(positionOne-4);
-                                setPositionTwo(positionTwo-4);
-                            }
-                        }}/>
-            
-                    {role.times!== undefined && (role.times.slice(positionOne, positionTwo).map( item => (
-                        <div className="RightbuttonComponent typeRole" key={item._id}>
-                            <ScheduleIcon style={{margin: "0 0 10px 0 " , fontSize: 30}}/>
-                            <strong className="Right Item">{item.name}</strong>
-                        </div>
-                    )))}
-
-                    <NavigateNextIcon style={{margin: "50px 0 0 0"}}
-                        onClick={() => {
-                            if(positionTwo >= role.times.length) alert("Sem mais resultados");
-                            else {
-                                setPositionOne(positionTwo);
-                                setPositionTwo(positionTwo+4);
-                            }
-                        }}/>
-                    </div>
-                </div>
-
-            <div className="carrosseisRole">
-                
-
-                <div className="formComponents">
-                    <form className="seachFormAdd" onSubmit={e => handleClickComponents(e)}>
-                        <strong>Filter</strong>
-                        <input
-                            className="inputAdd" 
-                            name="name" 
-                            id="name"
-                            placeholder="Name"
-                            type="text"  
-                            value={nameComponent}
-                            onChange={event => setNameComponent(event.target.value)}/>   
-                        
-                        <select name="typeBox" defaultValue='DEFAULT' id="TypeBox">
-                            <option className="TypeBoxOptions" value="group" selected>Groups</option>
-                        <option className="TypeBoxOptions" value="physicalLocal">Physical Local</option>
-                        <option className="TypeBoxOptions" value="lock">Locks</option>
-                        </select>                    
-                        
-                        <button type="submit" onClick={ handleClickComponents} className="filtrar formAdd">Search</button>                    
-                    </form>
-
-                    {renderComponent !== null ? (<Carrossel role={role._id} type={typeComponent} render={renderComponent}/> ): 
-                    (<p className="Right-Notify Condicional"><b>{typeComponent}:</b> No {typeComponent}</p>)}
-                </div>
-                
-                
-                <form className="seachFormAdd" onSubmit={e => handleClickUsers(e)}>
-                    <strong>Filter</strong>
-                    <input
-                        className="inputAdd" 
-                        name="name" 
-                        id="name"
-                        placeholder="Name"
-                        type="text"  
-                        value={nameUsers}
-                        onChange={event => setNameUsers(event.target.value)}/>   
-                                      
-                    
-                    <button type="submit" onClick={ handleClickComponents} className="filtrar formAdd">Search</button>                    
-                </form>
-
-                    
-                {renderUsers !== null ? (<Carrossel role={role._id} type="users" render={renderUsers}/> ): 
-                 (<p className="Right-Notify Condicional"><b>Users:</b> No users</p>)}
-                
-               
-
-                </div>
-
-                 
-            </form>
-           
-        </div>
-        <div className="add Shedule" id="add-area" onClick={handleClickAdd}>
+            <div className="add Shedule" id="add-area" onClick={handleClickAdd}>
                 <RoleIcon id="add-area2" onClick={handleClickAdd} style={{margin: '20px 0px 0px 20px'}}/>
-                {visibleForm ? <NewShedule id={id} onClose={()=> setVisibleForm(false)} load={load}/> : null}
-                </div>
+                {visibleForm ? <NewShedule id={id} onClose={()=> setVisibleForm(false)}/> : null}
+            </div>
+
             {check ? <Check role={role} onClose={()=> setCheck(false)}/> : null}
             {modal ? <Modal role={role} onClose={()=> setModal(false)}/> : null}
+            {modalSchedule ? <ModalSchedule time={role} onClose={()=> setModalSchedule(false)}/> : null}
+
         </div>
     )
 }

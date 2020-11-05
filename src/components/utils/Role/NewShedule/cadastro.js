@@ -55,7 +55,7 @@ function Cadastro ({onClose = () => {}, id, load}){
         <div className="containerFormRole">
             <div id="BoxCadastroRole" >
                 <form className="FormAddRole" onSubmit={newShedule}>
-                <strong>Add a new role</strong>
+                <strong>Add a new schedule</strong>
 
                     <div className="inputFormAdd">
                         <label htmlFor="nameRole">Schedule name</label>
@@ -95,43 +95,43 @@ function Cadastro ({onClose = () => {}, id, load}){
                         <p className="descriptionDias">Select days of the week</p>
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Sun</label>
-                    <input type="checkbox" value="0" id="campo-checkbox1" 
+                    <input type="checkbox" value="0" className="campo-checkbox1" 
                     onChange={()=>setDay(0)}/>
                 </div>
 
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Mon</label>
-                    <input type="checkbox" value="0" id="campo-checkbox1" 
+                    <input type="checkbox" value="0" className="campo-checkbox1" 
                     onChange={()=>setDay(1)}/>
                 </div>
 
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Tue</label>
-                    <input type="checkbox" value="0" id="campo-checkbox1" 
+                    <input type="checkbox" value="0" className="campo-checkbox1" 
                     onChange={()=>setDay(2)}/>
                 </div>
 
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Wed</label>
-                    <input type="checkbox" value="0"  id="campo-checkbox1" 
+                    <input type="checkbox" value="0"  className="campo-checkbox1" 
                     onChange={()=>setDay(3)}/>
                 </div>
 
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Thu</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" 
+                    <input type="checkbox" value="0" name="campo-checkbox" className="campo-checkbox1" 
                     onChange={()=>setDay(4)}/>
                 </div>
 
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Fri</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" 
+                    <input type="checkbox" value="0" name="campo-checkbox" className="campo-checkbox1" 
                     onChange={()=>setDay(5)}/>
                 </div>
 
                 <div className="dias-checkbox">
                     <label for="campo-checkbox1">Sat</label>
-                    <input type="checkbox" value="0" name="campo-checkbox" id="campo-checkbox1" 
+                    <input type="checkbox" value="0" name="campo-checkbox" className="campo-checkbox1" 
                     onChange={()=>setDay(6)}/>
                 </div>
                 </div>

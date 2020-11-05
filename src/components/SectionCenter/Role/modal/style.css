@@ -6,9 +6,9 @@
 .modalCheck.Modal{
     position: absolute;
     width: 800px;
-    height: 600px; 
+    height: 450px; 
     align-self: center;  
-    top: 10vh;
+    top: auto;
     left: 25vw;
 }
 select#TypeBoxModal{
