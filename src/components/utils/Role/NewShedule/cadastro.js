@@ -39,7 +39,8 @@ function Cadastro ({onClose = () => {}, id, load}){
     
             setStartTime('');
             setEndTime('')
-            load(response.data);
+            sessionStorage.setItem("role", JSON.stringify(response.data));
+            window.location.reload()
             onClose();
         }
 
